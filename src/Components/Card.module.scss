@@ -1,0 +1,42 @@
+.card-container {
+  background-color: bisque;
+  border-radius: 8px;
+  width: 120px;
+  height: 165px;
+
+  .card-cutout {
+    border-radius: 15px;
+
+    img {
+      width: 100%;
+    }
+  }
+}
+
+.right-cards {
+  background: url("../Images/CardBack.jpg") center/cover no-repeat;
+  border: 2px solid rgb(78, 156, 199);
+
+  &:hover {
+    transform: scale(1.05);
+    background: linear-gradient(
+        rgba(44, 174, 186, 0.3),
+        rgba(44, 174, 186, 0.3)
+      ),
+      url("../Images/CardBack.jpg") center/cover no-repeat;
+  }
+}
+
+.left-cards {
+  background: url("../Images/CardBack2.jpg") center/cover no-repeat;
+  border: 2px solid rgb(211, 158, 136);
+
+  &:hover {
+    transform: scale(1.05);
+    background: linear-gradient(
+        rgba(187, 117, 47, 0.35),
+        rgba(187, 117, 47, 0.35)
+      ),
+      url("../Images/CardBack2.jpg") center/cover no-repeat;
+  }
+}

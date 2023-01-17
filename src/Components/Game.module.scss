@@ -1,0 +1,65 @@
+.game-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 0 40px;
+}
+
+.game-text {
+  background-color: salmon;
+  padding: 0 40px;
+  flex: 1;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .text-container {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.game-play {
+  background-color: aquamarine;
+  padding: 0 40px;
+  flex: 3;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .dice-area {
+    background-color: burlywood;
+    width: 300px;
+    height: 300px;
+  }
+}
+
+.game-cards {
+  background-color: tomato;
+  padding: 0 40px;
+  flex: 2;
+
+  display: flex;
+
+  .deck-container-l {
+    background-color: aliceblue;
+    flex: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+  }
+
+  .deck-container-r {
+    background-color: rgb(126, 142, 156);
+    flex: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+}
