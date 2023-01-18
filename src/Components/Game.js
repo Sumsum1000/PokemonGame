@@ -13,6 +13,7 @@ import { fullDeckActions } from "../_Store/Store";
 export const Game = () => {
   const dispatch = useDispatch();
   const [deck, setDeck] = useState();
+  const { p1, p2 } = useSelector((state) => state.playersInfo);
   //const fullDeck = useSelector((state) => state.fullDeck.fullDeck);
 
   const fetchDeck = async () => {
@@ -49,11 +50,11 @@ export const Game = () => {
     <div className={style["game-container"]}>
       <div className={style["game-text"]}>
         <div>
-          <PlayerInfo />
+          <PlayerInfo name={p1} />
         </div>
         {/* <h1>POKEMON pLAY</h1> */}
         <div>
-          <PlayerInfo />
+          <PlayerInfo name={p2} />
         </div>
       </div>
       <div className={style["game-play"]}>

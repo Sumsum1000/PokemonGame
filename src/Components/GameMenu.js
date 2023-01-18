@@ -7,9 +7,13 @@ export const GameMenu = () => {
     navigate("/game");
   };
 
+  const formHandler = () => {
+    navigate("/form");
+  };
+
   return (
     <div>
-      <button>Enter names</button>
+      <button onClick={formHandler}>Enter names</button>
       <button onClick={startGameHandler}>Start game</button>
       <button>Sound on/off</button>
       <button>Dark mode/Light mode</button>

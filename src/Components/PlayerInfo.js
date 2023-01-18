@@ -1,8 +1,8 @@
-export const PlayerInfo = () => {
+export const PlayerInfo = ({ name }) => {
   return (
     <div>
       <span>Player 1</span>
-      <h2>Name</h2>
+      <h2>{name}</h2>
     </div>
   );
 };
