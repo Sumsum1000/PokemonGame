@@ -16,6 +16,7 @@
 .right-cards {
   background: url("../Images/CardBack.jpg") center/cover no-repeat;
   border: 2px solid rgb(78, 156, 199);
+  transition: all 0.2s ease;
 
   &:hover {
     transform: scale(1.05);
@@ -30,6 +31,7 @@
 .left-cards {
   background: url("../Images/CardBack2.jpg") center/cover no-repeat;
   border: 2px solid rgb(211, 158, 136);
+  transition: all 0.2s ease;
 
   &:hover {
     transform: scale(1.05);
