@@ -12,45 +12,21 @@ import { fullDeckActions } from "../_Store/Store";
 
 export const Game = () => {
   const dispatch = useDispatch();
-  const [deck, setDeck] = useState();
+  //   const [deck, setDeck] = useState();
   const { p1, p2 } = useSelector((state) => state.playersInfo);
-  //const fullDeck = useSelector((state) => state.fullDeck.fullDeck);
-
-  const fetchDeck = async () => {
-    try {
-      const pokemons = await fetch(
-        "https://pokeapi.co/api/v2/pokemon?limit=15&offset=0"
-      );
-      const data = pokemons.json().then((data) => setDeck(data.results));
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const shuffleDeck = (arr) => {
-    for (let i in arr) {
-      const random = Math.floor(Math.random() * (arr.length - 1));
-      const temp = arr[i];
-      arr[i] = arr[random];
-      arr[random] = temp;
-    }
-    return arr;
-  };
+  const deck1 = useSelector((state) => state.playersDecks.deck1);
+  const deck2 = useSelector((state) => state.playersDecks.deck2);
 
   useEffect(() => {
-    fetchDeck();
-  }, []);
-
-  useEffect(() => {
-    const shuffeled = shuffleDeck(deck);
-    console.log("updated fullDeCK ", shuffeled);
-  }, [deck]);
+    console.log("deck1 ", deck1);
+  }, [deck1]);
 
   return (
     <div className={style["game-container"]}>
       <div className={style["game-text"]}>
         <div>
           <PlayerInfo name={p1} />
+          {/* <h1>{deck1[0].url}</h1> */}
         </div>
         {/* <h1>POKEMON pLAY</h1> */}
         <div>

@@ -1,5 +1,4 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
-import { act } from "react-dom/test-utils";
 
 const playersSlice = createSlice({
   name: "playersInfo",
@@ -15,20 +14,23 @@ const playersSlice = createSlice({
 const url = "https://pokeapi.co/api/v2/pokemon?limit=50&offset=0";
 
 // Create slice for 2 decks
-const fullDeckSlice = createSlice({
-  name: "a",
-  initialState: {},
+const decksSlice = createSlice({
+  name: "playersDecks",
+  initialState: { deck1: [], deck2: [] },
   reducers: {
-    setFullDeck(state, action) {},
+    setDecks(state, action) {
+      state.deck1 = action.payload[0];
+      state.deck2 = action.payload[1];
+    },
   },
 });
 
 export const store = configureStore({
   reducer: {
-    fullDeck: fullDeckSlice.reducer,
+    playersDecks: decksSlice.reducer,
     playersInfo: playersSlice.reducer,
   },
 });
 
-export const fullDeckActions = fullDeckSlice.actions;
+export const decksActions = decksSlice.actions;
 export const playersInfoActions = playersSlice.actions;
