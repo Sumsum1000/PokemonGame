@@ -2,4 +2,37 @@
   width: 280px;
   height: 400px;
   background-color: antiquewhite;
+  border: 2px solid black;
+  border-radius: 10px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  h2 {
+    font-size: 32px;
+  }
+
+  p {
+    font-size: 20px;
+  }
+
+  img {
+    width: 250px;
+    height: 250px;
+    //object-fit: fill;
+  }
+
+  .left {
+    margin-left: 140px;
+  }
+
+  .right {
+    margin-right: 140px;
+  }
+
+  .opacity {
+    opacity: 0.3;
+  }
 }

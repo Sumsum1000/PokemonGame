@@ -64,15 +64,6 @@ export const PlayersForm = () => {
     return pokemonData;
   };
 
-  //   const test1 = (data, temp) => {
-  //     temp.push({
-  //       name: data.name,
-  //       id: data.id,
-  //       experience: data.base_experience,
-  //     });
-  //     return Promise.resolve(temp);
-  //   };
-
   useEffect(() => {
     fetchDeck();
   }, []);
@@ -92,6 +83,7 @@ export const PlayersForm = () => {
           name: item.name,
           id: item.id,
           experience: item.base_experience,
+          url: item.sprites.other.dream_world.front_default,
         });
       })
     );
@@ -99,8 +91,6 @@ export const PlayersForm = () => {
     d1.then((data) =>
       dispatch(decksActions.setDecks([temp.slice(0, 5), temp.slice(10, 15)]))
     );
-
-    //console.log("pok ", temp);
   }, [deck]);
 
   useEffect(() => {

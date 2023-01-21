@@ -16,11 +16,17 @@ const url = "https://pokeapi.co/api/v2/pokemon?limit=50&offset=0";
 // Create slice for 2 decks
 const decksSlice = createSlice({
   name: "playersDecks",
-  initialState: { deck1: [], deck2: [] },
+  initialState: { deck1: [], deck2: [], bigCard1: {}, bigCard2: {} },
   reducers: {
     setDecks(state, action) {
       state.deck1 = action.payload[0];
       state.deck2 = action.payload[1];
+    },
+    setBigCard1(state, action) {
+      state.bigCard1 = action.payload;
+    },
+    setBigCard2(state, action) {
+      state.bigCard2 = action.payload;
     },
   },
 });
