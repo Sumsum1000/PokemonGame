@@ -1,5 +1,55 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 
+const gameLogicSlice = createSlice({
+  name: "gameLogic",
+  initialState: {
+    isStart: false,
+    isAttack: true,
+    numAttackDice: 0, // max 3
+    numDeffenceDice: 0, // max 2
+    numCardsDeck1: 5,
+    numCardsDeck2: 5,
+    isBigCardLeft: false,
+    isBigCardRight: false,
+    isDiceReactivated: false,
+  },
+  reducers: {
+    setIsStart(state) {
+      state.isStart = !state.isStart;
+    },
+    setIsAttack(state) {
+      state.isAttack = !state.isAttack;
+    },
+    setAttackDice(state) {
+      state.numAttackDice = state.numAttackDice + 1; // max 3
+    },
+    setDeffenceDice(state) {
+      state.numDeffenceDice = state.numDeffenceDice + 1; // max 2
+    },
+    resetAttackDice(state) {
+      state.numAttackDice = 0;
+    },
+    resetDeffenceDice(state) {
+      state.numDeffenceDice = 0;
+    },
+    setNumCardsDeck1(state) {
+      state.numCardsDeck1 = state.numCardsDeck1 + 1;
+    },
+    setNumCardsDeck2(state) {
+      state.numCardsDeck2 = state.numCardsDeck2 + 1;
+    },
+    setIsBigCardLeft(state) {
+      state.isBigCardLeft = !state.isBigCardLeft;
+    },
+    setIsBigCardRight(state) {
+      state.isBigCardRight = !state.isBigCardRight;
+    },
+    reactivateDice(state) {
+      state.isDiceReactivated = !state.isDiceReactivated;
+    },
+  },
+});
+
 const playersSlice = createSlice({
   name: "playersInfo",
   initialState: { p1: "Player A", p2: "Player B" },
@@ -35,8 +85,10 @@ export const store = configureStore({
   reducer: {
     playersDecks: decksSlice.reducer,
     playersInfo: playersSlice.reducer,
+    gameLogic: gameLogicSlice.reducer,
   },
 });
 
 export const decksActions = decksSlice.actions;
 export const playersInfoActions = playersSlice.actions;
+export const gameLogicActions = gameLogicSlice.actions;

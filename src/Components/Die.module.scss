@@ -1,0 +1,42 @@
+$attack: rgb(30, 30, 30);
+$deffence: rgb(97, 114, 43);
+
+.die {
+  //background: url("../Images/Dice/die_2.png") center/cover no-repeat;
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  background-color: rgb(23, 50, 66);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid greenyellow;
+  //z-index: -1;
+
+  .grayed-out {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    z-index: 2;
+    background-color: rgba(240, 248, 255, 0.85);
+  }
+
+  .m {
+    max-width: 100%;
+  }
+}
+
+.inactive {
+  border: 2px solid rgb(191, 5, 5);
+}
+
+.attack {
+  background-color: $attack;
+}
+
+.deffence {
+  background-color: $deffence;
+}

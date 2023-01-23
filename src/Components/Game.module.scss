@@ -29,10 +29,58 @@
   justify-content: space-between;
   align-items: center;
 
-  .dice-area {
-    background-color: burlywood;
-    width: 300px;
+  .dice-area-container {
+    //background-color: burlywood;
+    width: 450px;
     height: 300px;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+
+    .dice-area {
+      background-color: rgba(161, 153, 153, 0.7);
+      border: 2px solid black;
+      padding: 20px;
+      width: 300px;
+      height: 300px;
+      border-radius: 8px;
+      z-index: 1;
+      //display: flex;
+
+      .dice-spread {
+        //background-color: rgba(159, 140, 177, 0.5);
+        border-radius: 8px;
+        width: 100%;
+        display: flex;
+
+        align-items: center;
+      }
+
+      .four-dice {
+        justify-content: center;
+        gap: 8px;
+        margin-bottom: 30px;
+      }
+
+      .two-dice {
+        justify-content: center;
+        gap: 8px;
+      }
+    }
+
+    .left-area {
+      //background-color: cadetblue;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .right-area {
+      //background-color: cadetblue;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
   }
 }
 

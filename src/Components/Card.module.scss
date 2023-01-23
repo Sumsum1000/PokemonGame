@@ -1,8 +1,24 @@
-.card-container {
-  background-color: bisque;
+.empty-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid rgb(211, 211, 14);
+  background: linear-gradient(
+      rgba(140, 140, 140, 0.9),
+      rgba(140, 140, 140, 0.9)
+    ),
+    url("../Images/CardBack.jpg") center/cover no-repeat;
   border-radius: 8px;
   width: 120px;
   height: 165px;
+}
+
+.card-container {
+  //background-color: bisque;
+  border-radius: 8px;
+  width: 120px;
+  height: 165px;
+  z-index: 1;
 
   .card-cutout {
     border-radius: 15px;
@@ -15,7 +31,7 @@
 
 .right-cards {
   background: url("../Images/CardBack.jpg") center/cover no-repeat;
-  border: 2px solid rgb(78, 156, 199);
+  //border: 2px solid rgb(78, 156, 199);
   transition: all 0.2s ease;
 
   &:hover {
@@ -30,7 +46,7 @@
 
 .left-cards {
   background: url("../Images/CardBack2.jpg") center/cover no-repeat;
-  border: 2px solid rgb(211, 158, 136);
+  //border: 2px solid rgb(211, 158, 136);
   transition: all 0.2s ease;
 
   &:hover {

@@ -21,49 +21,40 @@ export const Card = ({
   const [currentClass, setCurrentClass] = useState(c1);
   const [canClick, setCanClick] = useState(true);
 
-  const testFunc = () => {
-    console.log("Test is working");
+  const cardClickHandler = () => {
     setIsClicked(true);
     setCanClick(false);
   };
 
-  const updateClassName = () => {
-    console.log("UPDATED");
-    setIsClicked(true);
-  };
-
   useEffect(() => {
-    console.log("isClicked: ", isClicked);
     setCurrentClass(c2);
   }, [isClicked]);
 
   return (
-    <div
-      onClick={
-        canClick
-          ? () =>
-              onClick({
-                name,
-                id,
-                experience,
-                url,
-                animate,
-                isClicked,
-                testFunc,
-              })
-          : ""
-      }
-      isClicked={isClicked}
-      // className={[
-      //   `${style["card-container"]} ${className} ${className2}`,
-      // ].join()}
-      className={isClicked ? c2 : c1}
-    >
-      <h3>{name}</h3>
-      <h3>{id}</h3>
-      <h3>{experience}</h3>
-      {/* <h3>{url}</h3> */}
-    </div>
+    <di className={style["empty-card"]}>
+      <div
+        onClick={
+          canClick
+            ? () =>
+                onClick({
+                  name,
+                  id,
+                  experience,
+                  url,
+                  animate,
+                  isClicked,
+                  cardClickHandler,
+                })
+            : ""
+        }
+        isClicked={isClicked}
+        className={isClicked ? c2 : c1}
+      >
+        {/* <h3>{name}</h3>
+        <h3>{id}</h3>
+        <h3>{experience}</h3> */}
+      </div>
+    </di>
   );
 };
 
