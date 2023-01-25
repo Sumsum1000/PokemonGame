@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 export const Card = ({
   src,
   className,
-  className2,
   name,
   id,
   experience,
@@ -49,11 +48,7 @@ export const Card = ({
         }
         isClicked={isClicked}
         className={isClicked ? c2 : c1}
-      >
-        {/* <h3>{name}</h3>
-        <h3>{id}</h3>
-        <h3>{experience}</h3> */}
-      </div>
+      ></div>
     </di>
   );
 };

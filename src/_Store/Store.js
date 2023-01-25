@@ -12,6 +12,8 @@ const gameLogicSlice = createSlice({
     isBigCardLeft: false,
     isBigCardRight: false,
     isDiceReactivated: false,
+    attackResults: [],
+    deffenceResults: [],
   },
   reducers: {
     setIsStart(state) {
@@ -46,6 +48,18 @@ const gameLogicSlice = createSlice({
     },
     reactivateDice(state) {
       state.isDiceReactivated = !state.isDiceReactivated;
+    },
+    updaterAttackRoll(state, action) {
+      state.attackResults = [...state.attackResults, action.payload];
+    },
+    updateDeffenceRoll(state, action) {
+      state.deffenceResults = [...state.deffenceResults, action.payload];
+    },
+    resetAttackRoll(state) {
+      state.attackResults = [];
+    },
+    resetDeffenceRoll(state) {
+      state.deffenceResults = [];
     },
   },
 });

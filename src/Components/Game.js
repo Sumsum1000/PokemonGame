@@ -16,8 +16,9 @@ import {
   fullDeckActions,
   playersInfoActions,
 } from "../_Store/Store";
-import { animate } from "framer-motion";
+//import { animate } from "framer-motion";
 import { Die } from "./Die";
+import { Dice } from "./Dice";
 
 export const Game = () => {
   const dispatch = useDispatch();
@@ -67,7 +68,6 @@ export const Game = () => {
 
   const rightCardHandler = (e) => {
     updateClassName(e);
-
     dispatch(
       decksActions.setBigCard2({
         name: e.name,
@@ -144,10 +144,8 @@ export const Game = () => {
           url={bigCard1.url}
           experience={bigCard1.experience}
         />
-        <div className={style["dice-area-container"]}>
-          <div className={style["left-area"]}>
-            <button>Click</button>
-          </div>
+        <Dice className={style["dice-area-container"]} />
+        {/* <div className={style["dice-area-container"]}>
           <div className={style["dice-area"]}>
             <div
               className={[
@@ -190,11 +188,7 @@ export const Game = () => {
               />
             </div>
           </div>
-
-          <div className={style["right-area"]}>
-            <button>Click</button>
-          </div>
-        </div>
+        </div> */}
         <BigCard
           className={cardsPosition["right"]}
           name={bigCard2.name}
@@ -211,7 +205,7 @@ export const Game = () => {
                 onClick={(e) => leftCardHandler(e)}
                 isClicked={false}
                 className={backStyle["left-cards"]}
-                className2={isClicked ? backStyle["opacity"] : ""}
+                // className2={isClicked ? backStyle["opacity"] : ""}
                 name={card.name}
                 id={card.id}
                 experience={card.experience}

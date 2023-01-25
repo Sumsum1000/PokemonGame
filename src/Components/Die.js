@@ -26,7 +26,7 @@ export const Die = ({ className, isGradeOut, add }) => {
   //style["grayed-out"]
 
   const clickMe = () => {
-    if (!isGradeOut) {
+    if (!isGradeOut && !isClicked) {
       setIsClicked(true);
       setCanRoll(false);
       add();
