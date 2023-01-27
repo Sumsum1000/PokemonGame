@@ -1,9 +1,16 @@
 import style from "./BigCard.module.scss";
 
-export const BigCard = ({ name, id, experience, url, className }) => {
+export const BigCard = ({
+  name,
+  id,
+  experience,
+  url,
+  className,
+  className2,
+}) => {
   return (
     <div
-      className={style["big-card-container"]}
+      className={[`${style["big-card-container"]} ${className2}`].join()}
       name={name}
       id={id}
       experience={experience}
@@ -11,7 +18,7 @@ export const BigCard = ({ name, id, experience, url, className }) => {
     >
       <h2>{name}</h2>
       <img className={className} src={url} />
-      <p>Experience: {experience}</p>
+      <p>HP: {experience}</p>
     </div>
   );
 };

@@ -3,7 +3,7 @@ import { configureStore, createSlice } from "@reduxjs/toolkit";
 const gameLogicSlice = createSlice({
   name: "gameLogic",
   initialState: {
-    isStart: false,
+    isPlayerTurn: false,
     isAttack: true,
     numAttackDice: 0, // max 3
     numDeffenceDice: 0, // max 2
@@ -49,17 +49,20 @@ const gameLogicSlice = createSlice({
     reactivateDice(state) {
       state.isDiceReactivated = !state.isDiceReactivated;
     },
-    updaterAttackRoll(state, action) {
+    updaterAttackResult(state, action) {
       state.attackResults = [...state.attackResults, action.payload];
     },
-    updateDeffenceRoll(state, action) {
+    updateDeffenceResult(state, action) {
       state.deffenceResults = [...state.deffenceResults, action.payload];
     },
-    resetAttackRoll(state) {
+    resetAttackResult(state) {
       state.attackResults = [];
     },
-    resetDeffenceRoll(state) {
+    resetDeffenceResult(state) {
       state.deffenceResults = [];
+    },
+    setPlayerTurn(state) {
+      state.isPlayerTurn = !state.isPlayerTurn;
     },
   },
 });
@@ -75,9 +78,63 @@ const playersSlice = createSlice({
   },
 });
 
+const player1Slice = createSlice({
+  name: "player1",
+  initialState: {
+    isPlaying: true,
+    deckCounter: 5,
+    mode: "attack",
+    bigCardHp: 0,
+  },
+  reducers: {
+    setIsPlaying(state, action) {
+      state.isPlaying = action.payload;
+    },
+    setDeckCounter(state) {
+      state.deckCounter = state.deckCounter - 1;
+    },
+    setAttackMode(state) {
+      state.mode = "attack";
+    },
+    setDeffenceMode(state) {
+      state.mode = "deffence";
+    },
+    setBigCardHp(state, action) {
+      state.bigCardHp = action.payload;
+    },
+  },
+});
+
+const player2Slice = createSlice({
+  name: "player2",
+  initialState: {
+    isPlaying: false,
+    deckCounter: 5,
+    mode: "deffence",
+    bigCardHp: 0,
+  },
+  reducers: {
+    setIsPlaying(state, action) {
+      state.isPlaying = action.payload;
+    },
+    setDeckCounter(state) {
+      state.deckCounter = state.deckCounter - 1;
+    },
+    setAttackMode(state) {
+      state.mode = "attack";
+    },
+    setDeffenceMode(state) {
+      state.mode = "deffence";
+    },
+    setBigCardHp(state, action) {
+      state.bigCardHp = action.payload;
+    },
+  },
+});
+
 const url = "https://pokeapi.co/api/v2/pokemon?limit=50&offset=0";
 
-// Create slice for 2 decks
+// move this slice to player 1 and player 2
 const decksSlice = createSlice({
   name: "playersDecks",
   initialState: { deck1: [], deck2: [], bigCard1: {}, bigCard2: {} },
@@ -100,9 +157,13 @@ export const store = configureStore({
     playersDecks: decksSlice.reducer,
     playersInfo: playersSlice.reducer,
     gameLogic: gameLogicSlice.reducer,
+    player1: player1Slice.reducer,
+    player2: player2Slice.reducer,
   },
 });
 
 export const decksActions = decksSlice.actions;
 export const playersInfoActions = playersSlice.actions;
 export const gameLogicActions = gameLogicSlice.actions;
+export const player1Actions = player1Slice.actions;
+export const player2Actions = player2Slice.actions;

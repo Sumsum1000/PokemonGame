@@ -2,7 +2,7 @@
   width: 280px;
   height: 400px;
   background-color: rgb(207, 203, 198);
-  border: 2px solid black;
+  border: 3px solid black;
   border-radius: 10px;
   box-shadow: 5px 5px 10px rgb(104, 104, 104);
 
@@ -40,6 +40,10 @@
 
 .opacity {
   animation: reveal 1s linear;
+}
+
+.green-border {
+  border: 3px solid rgb(105, 237, 3);
 }
 
 // @keyframes reveal {
