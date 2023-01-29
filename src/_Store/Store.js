@@ -1,8 +1,13 @@
-import { configureStore, createSlice } from "@reduxjs/toolkit";
+import {
+  configureStore,
+  createSlice,
+  isAsyncThunkAction,
+} from "@reduxjs/toolkit";
 
 const gameLogicSlice = createSlice({
   name: "gameLogic",
   initialState: {
+    isGameRunning: true,
     isPlayerTurn: false,
     isAttack: true,
     numAttackDice: 0, // max 3
@@ -14,8 +19,15 @@ const gameLogicSlice = createSlice({
     isDiceReactivated: false,
     attackResults: [],
     deffenceResults: [],
+    isModal: false,
   },
   reducers: {
+    setIsGameRunning(state, action) {
+      state.isGameRunning = action.payload;
+    },
+    setIsModal(state, action) {
+      state.isModal = action.payload;
+    },
     setIsStart(state) {
       state.isStart = !state.isStart;
     },
@@ -67,16 +79,16 @@ const gameLogicSlice = createSlice({
   },
 });
 
-const playersSlice = createSlice({
-  name: "playersInfo",
-  initialState: { p1: "Player A", p2: "Player B" },
-  reducers: {
-    setPlayersNames(state, action) {
-      state.p1 = action.payload[0];
-      state.p2 = action.payload[1];
-    },
-  },
-});
+// const playersSlice = createSlice({
+//   name: "playersInfo",
+//   initialState: { p1: "Player A", p2: "Player B" },
+//   reducers: {
+//     setPlayersNames(state, action) {
+//       state.p1 = action.payload[0];
+//       state.p2 = action.payload[1];
+//     },
+//   },
+// });
 
 const player1Slice = createSlice({
   name: "player1",
@@ -84,13 +96,16 @@ const player1Slice = createSlice({
     isPlaying: true,
     deckCounter: 5,
     mode: "attack",
-    bigCardHp: 0,
+    bigCardHp: "-",
+    isBigCard: false,
+    isLost: null,
+    name: "Player 1",
   },
   reducers: {
     setIsPlaying(state, action) {
       state.isPlaying = action.payload;
     },
-    setDeckCounter(state) {
+    substructDeckCounter(state) {
       state.deckCounter = state.deckCounter - 1;
     },
     setAttackMode(state) {
@@ -101,6 +116,15 @@ const player1Slice = createSlice({
     },
     setBigCardHp(state, action) {
       state.bigCardHp = action.payload;
+    },
+    setIsBIgCard(state, action) {
+      state.isBigCard = action.payload;
+    },
+    setIsLost(state) {
+      state.isLost = true;
+    },
+    setName(state, action) {
+      state.name = action.payload;
     },
   },
 });
@@ -111,13 +135,16 @@ const player2Slice = createSlice({
     isPlaying: false,
     deckCounter: 5,
     mode: "deffence",
-    bigCardHp: 0,
+    bigCardHp: "-",
+    isBigCard: false,
+    isLost: null,
+    name: "Player 2",
   },
   reducers: {
     setIsPlaying(state, action) {
       state.isPlaying = action.payload;
     },
-    setDeckCounter(state) {
+    substructDeckCounter(state) {
       state.deckCounter = state.deckCounter - 1;
     },
     setAttackMode(state) {
@@ -128,6 +155,15 @@ const player2Slice = createSlice({
     },
     setBigCardHp(state, action) {
       state.bigCardHp = action.payload;
+    },
+    setIsBIgCard(state, action) {
+      state.isBigCard = action.payload;
+    },
+    setIsLost(state) {
+      state.isLost = true;
+    },
+    setName(state, action) {
+      state.name = action.payload;
     },
   },
 });
@@ -155,7 +191,7 @@ const decksSlice = createSlice({
 export const store = configureStore({
   reducer: {
     playersDecks: decksSlice.reducer,
-    playersInfo: playersSlice.reducer,
+    //playersInfo: playersSlice.reducer,
     gameLogic: gameLogicSlice.reducer,
     player1: player1Slice.reducer,
     player2: player2Slice.reducer,
@@ -163,7 +199,7 @@ export const store = configureStore({
 });
 
 export const decksActions = decksSlice.actions;
-export const playersInfoActions = playersSlice.actions;
+//export const playersInfoActions = playersSlice.actions;
 export const gameLogicActions = gameLogicSlice.actions;
 export const player1Actions = player1Slice.actions;
 export const player2Actions = player2Slice.actions;

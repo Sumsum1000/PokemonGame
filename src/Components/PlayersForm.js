@@ -3,7 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { useRef, useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { decksActions, playersInfoActions } from "../_Store/Store";
+import {
+  decksActions,
+  playersInfoActions,
+  player1,
+  player1Actions,
+  player2Actions,
+  player,
+} from "../_Store/Store";
 
 export const PlayersForm = () => {
   const test = useSelector((state) => state.playersDecks);
@@ -22,7 +29,8 @@ export const PlayersForm = () => {
     console.log("SUBMIT");
     const p1 = p1Ref.current.value;
     const p2 = p2Ref.current.value;
-    dispatch(playersInfoActions.setPlayersNames([p1, p2]));
+    dispatch(player1Actions.setName(p1));
+    dispatch(player2Actions.setName(p2));
     navigate("/game");
   };
 

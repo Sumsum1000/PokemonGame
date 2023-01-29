@@ -1,6 +1,7 @@
 import style from "./Card.module.scss";
 import { animate, motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 export const Card = ({
   src,
@@ -21,6 +22,7 @@ export const Card = ({
   const [canClick, setCanClick] = useState(true);
 
   const cardClickHandler = () => {
+    console.log("click click click");
     setIsClicked(true);
     setCanClick(false);
   };

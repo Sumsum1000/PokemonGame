@@ -1,4 +1,5 @@
 import style from "./BigCard.module.scss";
+import voctory from "../Images/Victory.png";
 
 export const BigCard = ({
   name,
@@ -7,10 +8,13 @@ export const BigCard = ({
   url,
   className,
   className2,
+  className3,
 }) => {
   return (
     <div
-      className={[`${style["big-card-container"]} ${className2}`].join()}
+      className={[
+        `${style["big-card-container"]} ${className3} ${className2}`,
+      ].join()}
       name={name}
       id={id}
       experience={experience}

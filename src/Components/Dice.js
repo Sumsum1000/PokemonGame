@@ -17,6 +17,7 @@ import {
 
 //import { animate } from "framer-motion";
 import { Die } from "./Die";
+import { Modal } from "./Modal";
 
 export const Dice = ({ className, className2, className3 }) => {
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ export const Dice = ({ className, className2, className3 }) => {
   const [deffenceMultiply, setDeffenceMultiply] = useState("?");
   const [isAttackCalc, setIsAttackCalc] = useState(false);
   const [isDeffenceCalc, setIsDefeenceCalc] = useState(false);
+  //const [isModal, setIsModal] = useState(false);
   const player1 = useSelector((state) => state.player1);
   const player2 = useSelector((state) => state.player2);
   const gameLogic = useSelector((state) => state.gameLogic);
@@ -35,6 +37,7 @@ export const Dice = ({ className, className2, className3 }) => {
     numDeffenceDice,
     attackResults,
     deffenceResults,
+    isModal,
     isPlayerTurn,
   } = gameLogic;
 
@@ -65,15 +68,6 @@ export const Dice = ({ className, className2, className3 }) => {
       clearTimeout(timer);
     };
   }, [numAttackDice, attackResults]);
-
-  const calculateHp = (num) => {
-    // if (player2.mode === "deffence") {
-    //   dispatch(player2Actions.setBigCardHp(num));
-    // }
-    // if (player1.mode === "deffence") {
-    //   dispatch(player2Actions.setBigCardHp(num));
-    // }
-  };
 
   useEffect(() => {
     console.log("Attack ", numDeffenceDice);
@@ -106,8 +100,6 @@ export const Dice = ({ className, className2, className3 }) => {
 
   useEffect(() => {
     if (isAttackCalc && isDeffenceCalc) {
-      // if player2.bigCardHp < 0 ... setIsBigCard = false - do something
-      // if player1.bigCardHp < 0 ... setIsBigCard = false - do something
       if (player2.mode === "deffence") {
         setIsAttackCalc(false);
         setIsDefeenceCalc(false);
@@ -129,8 +121,23 @@ export const Dice = ({ className, className2, className3 }) => {
     }
   }, [isAttackCalc, isDeffenceCalc]);
 
+  useEffect(() => {
+    if (!player1.isBigCard || !player2.isBigCard) {
+      if (player1.deckCounter > 0 && player2.deckCounter > 0) {
+        dispatch(gameLogicActions.setIsModal(true));
+      }
+    }
+  }, [
+    player1.isBigCard,
+    player2.isBigCard,
+    player1.deckCounter,
+    player2.deckCounter,
+  ]);
+
   return (
-    <div className={className}>
+    <div className={style["dice-area-container"]}>
+      {isModal && <Modal text="Choose a card to play!" />}
+      {/* --------------------------------------------------------------------------- */}
       <div className={className2}>
         <h3>Attack</h3>
         <div className={style["results-info"]}>
@@ -145,6 +152,7 @@ export const Dice = ({ className, className2, className3 }) => {
           <h3>{deffenceMultiply}</h3>
         </div>
       </div>
+      {/* --------------------------------------------------------------------------- */}
       <div className={style["dice-area"]}>
         <div
           className={[`${style["dice-spread"]} ${style["four-dice"]}`].join()}
