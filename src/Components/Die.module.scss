@@ -1,5 +1,9 @@
 $attack: rgb(30, 30, 30);
 $deffence: rgb(97, 114, 43);
+$prmery_1: rgb(53, 52, 52);
+$secondery_1: rgb(111, 139, 148);
+$secondery_2: rgb(182, 212, 222);
+$secondery_3: rgb(98, 113, 118);
 
 .die {
   //background: url("../Images/Dice/die_2.png") center/cover no-repeat;
@@ -12,7 +16,7 @@ $deffence: rgb(97, 114, 43);
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px solid greenyellow;
+  border: 2px solid $secondery_2;
   //z-index: -1;
 
   .grayed-out {
@@ -30,7 +34,7 @@ $deffence: rgb(97, 114, 43);
 }
 
 .inactive {
-  border: 2px solid rgb(191, 5, 5);
+  border: 2px solid $secondery_3;
 }
 
 .attack {

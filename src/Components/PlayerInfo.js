@@ -1,11 +1,7 @@
-export const PlayerInfo = ({ name, isPlaying, mode, hasCard }) => {
+export const PlayerInfo = ({ name, p }) => {
   return (
-    <div
-      isPlaying={isPlaying}
-      mode={mode} //attack/deffence
-      hasArd={hasCard}
-    >
-      <span>Player 1</span>
+    <div>
+      <span>Player {p}</span>
       <h2>{name}</h2>
     </div>
   );

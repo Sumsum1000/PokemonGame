@@ -1,3 +1,11 @@
+$prmery_1: rgb(53, 52, 52);
+$secondery_1: rgb(111, 139, 148);
+$secondery_2: rgb(182, 212, 222);
+
+body {
+  background-color: $prmery_1;
+}
+
 .game-container {
   position: relative;
   display: flex;
@@ -7,13 +15,15 @@
 }
 
 .game-text {
-  background-color: salmon;
+  //background-color: salmon;
+  background-color: $prmery_1;
   padding: 0 40px;
   flex: 1;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: $secondery_2;
 
   .text-container {
     display: flex;
@@ -22,7 +32,8 @@
 }
 
 .game-play {
-  background-color: aquamarine;
+  //background-color: aquamarine;
+  background-color: $prmery_1;
   padding: 0 40px;
   flex: 3;
 
@@ -51,16 +62,19 @@
     }
 
     .attack-info {
+      color: $secondery_2;
       transform: translate(-50%, 15%);
       display: flex;
     }
 
     .deffence-info {
+      color: $secondery_2;
       transform: translate(-50%, 120%);
       display: flex;
     }
 
     .results-info {
+      color: $secondery_2;
       width: 100px;
       display: flex;
       gap: 10px;
@@ -103,54 +117,60 @@
       }
     }
 
-    .left-area {
-      background-color: cadetblue;
-      display: flex;
-      flex-direction: column;
-      width: 70px;
-      height: 100px;
+    // .left-area {
+    //   //background-color: cadetblue;
+    //   background-color: $prmery_1;
+    //   display: flex;
+    //   flex-direction: column;
+    //   width: 70px;
+    //   height: 100px;
 
-      span {
-        margin-top: 40px;
-        font-size: 20px;
-      }
-    }
+    //   span {
+    //     margin-top: 40px;
+    //     font-size: 20px;
+    //   }
+    // }
 
-    .right-area {
-      background-color: cadetblue;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      width: 70px;
-      height: 100px;
-    }
+    // .right-area {
+    //   //background-color: cadetblue;
+    //   display: flex;
+    //   flex-direction: column;
+    //   justify-content: center;
+    //   width: 70px;
+    //   height: 100px;
+    // }
   }
 }
 
 .game-cards {
-  background-color: tomato;
+  //background-color: tomato;
+  background-color: $prmery_1;
   padding: 0 40px;
   flex: 2;
 
   display: flex;
 
   .deck-container-l {
-    background-color: aliceblue;
+    //background-color: aliceblue;
+    background-color: $prmery_1;
     flex: 1;
 
     display: flex;
     align-items: center;
     justify-content: flex-start;
     gap: 10px;
+    border-top: 1px solid $secondery_1;
   }
 
   .deck-container-r {
-    background-color: rgb(126, 142, 156);
+    //background-color: rgb(126, 142, 156);
+    background-color: $prmery_1;
     flex: 1;
 
     display: flex;
     align-items: center;
     justify-content: flex-end;
     gap: 10px;
+    border-top: 1px solid $secondery_1;
   }
 }

@@ -1,0 +1,14 @@
+.menu-container {
+  position: absolute;
+  //background-color: antiquewhite;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 300px;
+}
+
+.menu {
+  width: 10%;
+  display: flex;
+  flex-direction: column;
+}

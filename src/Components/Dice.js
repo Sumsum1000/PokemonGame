@@ -22,6 +22,7 @@ import { Modal } from "./Modal";
 export const Dice = ({ className, className2, className3 }) => {
   const dispatch = useDispatch();
   //   const [deck, setDeck] = useState();
+  const [roundCounter, setRoundCounter] = useState(1);
   const [isAttackGrayed, setIsAttackGrayed] = useState(false);
   const [isDeffenceGrayed, setIsDeffenceGrayed] = useState(true);
   const [attackMultiply, setAttackMultiply] = useState("?");
@@ -43,24 +44,41 @@ export const Dice = ({ className, className2, className3 }) => {
 
   // Add icons for attack and deffence - who is play, attack or deffence
   // Duplicate code for attack and deffence
+  //console.log("conter ", roundCounter);
+
   useEffect(() => {
-    console.log("Attack ", numAttackDice);
+    //console.log("Attack ", numAttackDice);
     let timer;
     if (numAttackDice === 3 && attackResults.length > 2) {
-      console.log("numAttackDice ", numAttackDice);
+      //console.log("numAttackDice ", numAttackDice);
+
+      // set player playing for update attack/defence icons
+
+      setRoundCounter(roundCounter + 1);
+
+      // if (roundCounter === 1) {
+      //   // p2 defence
+      //   console.log("p2 defence");
+      // }
+      // if (roundCounter === 2) {
+      //   // p1 defence
+      //   console.log("p1 defence");
+      //   setRoundCounter(0);
+      // }
 
       timer = setTimeout(() => {
         setIsAttackGrayed(!isAttackGrayed);
         setIsDeffenceGrayed(!isDeffenceGrayed);
 
         const result = attackResults[0] * attackResults[1] * attackResults[2];
-        console.log("attackResults! ", attackResults);
+        //console.log("attackResults! ", attackResults);
         setAttackMultiply(result);
         setIsAttackCalc(true);
         dispatch(gameLogicActions.resetAttackResult());
-        //dispatch(gameLogicActions.setPlayerTurn());
         dispatch(player1Actions.setIsPlaying(!player1.isPlaying));
+        // p2 attack
         dispatch(player2Actions.setIsPlaying(!player2.isPlaying));
+        // p1 defence
       }, 600);
     }
 
@@ -70,23 +88,35 @@ export const Dice = ({ className, className2, className3 }) => {
   }, [numAttackDice, attackResults]);
 
   useEffect(() => {
-    console.log("Attack ", numDeffenceDice);
+    //console.log("Attack ", numDeffenceDice);
     let timer;
     if (numDeffenceDice === 2 && deffenceResults.length > 1) {
-      console.log("numDeffenceDice ", numDeffenceDice);
+      //console.log("numDeffenceDice ", numDeffenceDice);
+
+      // set player playing for update attack/defence icons
+      setRoundCounter(roundCounter + 1);
+
+      // if (roundCounter === 1) {
+      //   // p2 attack
+      //   console.log("p2 attack");
+      // }
+      // if (roundCounter === 2) {
+      //   // p1 attack
+      //   console.log("p1 attack");
+      // }
 
       timer = setTimeout(() => {
         setIsAttackGrayed(!isAttackGrayed);
         setIsDeffenceGrayed(!isDeffenceGrayed);
 
         const result = deffenceResults[0] * deffenceResults[1];
-        console.log("attackResults! ", attackResults);
+        //console.log("attackResults! ", attackResults);
 
         // after a complete round-----------------------
         setDeffenceMultiply(result);
         setIsDefeenceCalc(true);
-        console.log("attackMultiply ", attackMultiply);
-        console.log("deffenceMultiply ", deffenceMultiply);
+        //console.log("attackMultiply ", attackMultiply);
+        //console.log("deffenceMultiply ", deffenceMultiply);
         //calculateHp(attackMultiply - deffenceMultiply);
         dispatch(gameLogicActions.resetDeffenceResult());
         dispatch(gameLogicActions.reactivateDice());
@@ -99,13 +129,53 @@ export const Dice = ({ className, className2, className3 }) => {
   }, [numDeffenceDice, deffenceResults]);
 
   useEffect(() => {
+    if (roundCounter === 1) {
+      console.log("roundCounter: ", roundCounter);
+      console.log("p1 attack");
+      dispatch(player1Actions.setIsAttack(true));
+      dispatch(player1Actions.setIsDefence(false));
+      dispatch(player2Actions.setIsAttack(false));
+      dispatch(player2Actions.setIsDefence(false));
+    }
+    if (roundCounter === 2) {
+      console.log("p2 defence");
+      console.log("roundCounter: ", roundCounter);
+      dispatch(player1Actions.setIsAttack(false));
+      dispatch(player1Actions.setIsDefence(false));
+      dispatch(player2Actions.setIsAttack(false));
+      dispatch(player2Actions.setIsDefence(true));
+    }
+    if (roundCounter === 3) {
+      console.log("p2 attack");
+      console.log("roundCounter: ", roundCounter);
+      dispatch(player1Actions.setIsAttack(false));
+      dispatch(player1Actions.setIsDefence(false));
+      dispatch(player2Actions.setIsAttack(true));
+      dispatch(player2Actions.setIsDefence(false));
+    }
+    if (roundCounter === 4) {
+      console.log("p1 defence");
+      console.log("roundCounter: ", roundCounter);
+      dispatch(player1Actions.setIsAttack(false));
+      dispatch(player1Actions.setIsDefence(true));
+      dispatch(player2Actions.setIsAttack(false));
+      dispatch(player2Actions.setIsDefence(false));
+    }
+    if (roundCounter === 5) {
+      console.log("reset");
+      console.log("roundCounter: ", roundCounter);
+      setRoundCounter(1);
+    }
+  }, [roundCounter]);
+
+  useEffect(() => {
     if (isAttackCalc && isDeffenceCalc) {
       if (player2.mode === "deffence") {
         setIsAttackCalc(false);
         setIsDefeenceCalc(false);
         const newHp = player2.bigCardHp - (attackMultiply - deffenceMultiply);
         dispatch(player2Actions.setBigCardHp(newHp));
-        console.log("newHp ", newHp);
+        //console.log("newHp ", newHp);
         dispatch(player2Actions.setAttackMode());
         dispatch(player1Actions.setDeffenceMode());
       }
@@ -114,7 +184,7 @@ export const Dice = ({ className, className2, className3 }) => {
         setIsDefeenceCalc(false);
         const newHp = player1.bigCardHp - (attackMultiply - deffenceMultiply);
         dispatch(player1Actions.setBigCardHp(newHp));
-        console.log("newHp ", newHp);
+        //console.log("newHp ", newHp);
         dispatch(player1Actions.setAttackMode());
         dispatch(player2Actions.setDeffenceMode());
       }

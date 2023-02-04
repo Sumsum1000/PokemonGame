@@ -49,13 +49,13 @@ export const Die = ({ className, isGradeOut, add, tag }) => {
         random = Math.floor(Math.random() * 6);
         dispatch(gameLogicActions.updaterAttackResult(random + 1));
         setDieNum(numbers[random]);
-        console.log("Attack clicked ", random + 1);
+        //console.log("Attack clicked ", random + 1);
       }
       if (tag === "deffence") {
         random = Math.floor(Math.random() * 6);
         dispatch(gameLogicActions.updateDeffenceResult(random + 1));
         setDieNum(numbers[random]);
-        console.log("Deffence clicked ", random + 1);
+        //console.log("Deffence clicked ", random + 1);
       }
     }
   }, [isClicked]);

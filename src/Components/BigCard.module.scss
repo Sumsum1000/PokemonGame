@@ -1,10 +1,14 @@
+$prmery_1: rgb(53, 52, 52);
+$secondery_1: rgb(111, 139, 148);
+$secondery_2: rgb(182, 212, 222);
+
 .big-card-container {
   width: 280px;
   height: 400px;
   background-color: rgb(207, 203, 198);
   border: 3px solid black;
   border-radius: 10px;
-  box-shadow: 5px 5px 10px rgb(104, 104, 104);
+  box-shadow: 0px 0px 20px rgb(104, 104, 104);
 
   display: flex;
   flex-direction: column;
@@ -22,7 +26,23 @@
   img {
     width: 250px;
     height: 250px;
+    //background-color: antiquewhite;
+    transform: scale(1);
     //object-fit: fill;
+  }
+
+  .img-anim {
+    transform: scale(1);
+    animation: 1s fade-in forwards;
+  }
+
+  @keyframes fade-in {
+    from {
+      transform: scale(0);
+    }
+    to {
+      transform: scale(1);
+    }
   }
 
   .left {
@@ -47,14 +67,39 @@
 }
 
 .green-border {
-  border: 3px solid rgb(105, 237, 3);
+  border: 3px solid $secondery_2;
+  box-shadow: 0px 0px 20px $secondery_2;
 }
 
-// @keyframes reveal {
-//   0% {
-//     opacity: 0;
-//   }
-//   100% {
-//     opacity: 1;
-//   }
-// }
+.player-status {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  top: 150px;
+  //background-color: bisque;
+
+  img {
+    max-width: 50px;
+    height: auto;
+    opacity: 0.2;
+  }
+
+  // .icon-not-active {
+  //   opacity: 0.2;
+  // }
+
+  .icon-active {
+    opacity: 1;
+  }
+}
+.icons-left {
+  margin-left: 400px;
+}
+.icons-right {
+  margin-right: 400px;
+}
+
+.classMirror {
+  transform: scaleX(-1);
+}

@@ -1,8 +1,14 @@
+$prmery_1: rgb(53, 52, 52);
+$prmery_2: rgb(255, 204, 3);
+
+$secondery_1: rgb(111, 139, 148);
+$secondery_2: rgb(182, 212, 222);
+
 .empty-card {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px solid rgb(211, 211, 14);
+  border: 2px solid $prmery_2;
   background: linear-gradient(
       rgba(140, 140, 140, 0.9),
       rgba(140, 140, 140, 0.9)

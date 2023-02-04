@@ -1,14 +1,14 @@
 import style from "./Game.module.scss";
 import big from "./BigCard.module.scss";
-import dice from "./Die.module.scss";
+//import dice from "./Die.module.scss";
 import victory from "../Images/Victory.png";
 import { BigCard } from "./BigCard";
 import { Card } from "./Card";
-import cardsPosition from "./BigCard.module.scss";
+import bigCard from "./BigCard.module.scss";
 import backStyle from "./Card.module.scss";
 import { PlayerInfo } from "./PlayerInfo";
-import backCard from "../Images/CardBack.jpg";
-import backCard2 from "../Images/CardBack2.jpg";
+//import backCard from "../Images/CardBack.jpg";
+//import backCard2 from "../Images/CardBack2.jpg";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -21,16 +21,18 @@ import { Die } from "./Die";
 import { Dice } from "./Dice";
 
 export const Game = () => {
-  // const [isSubststractP1, setIsSubstractP1] = useState(false);
-  // const [isSubststractP2, setIsSubstractP2] = useState(false);
   const dispatch = useDispatch();
-  //const { p1, p2 } = useSelector((state) => state.playersInfo);
   const deck1 = useSelector((state) => state.playersDecks.deck1);
   const deck2 = useSelector((state) => state.playersDecks.deck2);
   const { bigCard1, bigCard2 } = useSelector((state) => state.playersDecks);
 
   const player1 = useSelector((state) => state.player1);
   const player2 = useSelector((state) => state.player2);
+
+  const [isLeftAttack, setIsLeftAttack] = useState(true);
+  const [isLeftDefence, setIsLeftDefence] = useState(false);
+  const [isRightAttack, setIsRightAttack] = useState(false);
+  const [isRightDefence, setIsRightDefence] = useState(false);
 
   // init game
   useEffect(() => {
@@ -113,24 +115,22 @@ export const Game = () => {
     <div className={style["game-container"]}>
       <div className={style["game-text"]}>
         <div>
-          <PlayerInfo
-            name={player1.name}
-            isPlaying={""}
-            mode={""}
-            hasCard={""}
-          />
+          <PlayerInfo p="1" name={player1.name} />
         </div>
         <div>
-          <PlayerInfo name={player2.name} />
+          <PlayerInfo p="2" name={player2.name} />
         </div>
       </div>
       <div className={style["game-play"]}>
         {/* P1 */}
         <BigCard
-          className={cardsPosition["left"]}
+          attackActive={player1.isAttack && bigCard["icon-active"]}
+          defenceActive={player1.isDefence && bigCard["icon-active"]}
+          classIcons={bigCard["icons-left"]}
+          className={bigCard["left"]}
           className2={player1.isPlaying ? big["green-border"] : ""}
           className3={player1.bigCardHp <= 0 ? big["terminated"] : ""}
-          name={player2.setIsLost ? player1.name : bigCard1.name}
+          name={player2.isLost ? player1.name : bigCard1.name}
           url={player2.deckCounter === 0 ? victory : bigCard1.url}
           experience={player1.bigCardHp}
         />
@@ -143,10 +143,14 @@ export const Game = () => {
         />
         {/* P2 */}
         <BigCard
-          className={cardsPosition["right"]}
+          attackActive={player2.isAttack && bigCard["icon-active"]}
+          defenceActive={player2.isDefence && bigCard["icon-active"]}
+          classIcons={bigCard["icons-right"]}
+          classMirror={bigCard["classMirror"]}
+          className={bigCard["right"]}
           className2={player2.isPlaying ? big["green-border"] : ""}
           className3={player2.bigCardHp <= 0 ? big["terminated"] : ""}
-          name={player1.setIsLost ? player2.name : bigCard2.name}
+          name={player1.isLost ? player2.name : bigCard2.name}
           url={player1.deckCounter === 0 ? victory : bigCard2.url}
           experience={player2.bigCardHp}
         />

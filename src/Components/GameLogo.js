@@ -1,5 +1,10 @@
 import style from "./GameLogo.module.scss";
+import logo from "../Images/Logo.png";
 
 export const GameLogo = () => {
-  return <div className={style["logo"]}>POKEMON PLAY</div>;
+  return (
+    <div className={style["logo"]}>
+      <img src={logo} />
+    </div>
+  );
 };

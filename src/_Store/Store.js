@@ -100,6 +100,8 @@ const player1Slice = createSlice({
     isBigCard: false,
     isLost: null,
     name: "Player 1",
+    isAttack: true,
+    isDefence: false,
   },
   reducers: {
     setIsPlaying(state, action) {
@@ -125,6 +127,12 @@ const player1Slice = createSlice({
     },
     setName(state, action) {
       state.name = action.payload;
+    },
+    setIsAttack(state, action) {
+      state.isAttack = action.payload;
+    },
+    setIsDefence(state, action) {
+      state.isDefence = action.payload;
     },
   },
 });
@@ -139,6 +147,8 @@ const player2Slice = createSlice({
     isBigCard: false,
     isLost: null,
     name: "Player 2",
+    isAttack: true,
+    isDefence: false,
   },
   reducers: {
     setIsPlaying(state, action) {
@@ -164,6 +174,12 @@ const player2Slice = createSlice({
     },
     setName(state, action) {
       state.name = action.payload;
+    },
+    setIsAttack(state, action) {
+      state.isAttack = action.payload;
+    },
+    setIsDefence(state, action) {
+      state.isDefence = action.payload;
     },
   },
 });
