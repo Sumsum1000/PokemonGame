@@ -18,29 +18,6 @@ body {
   padding: 0 40px;
 }
 
-.game-text {
-  //background-color: salmon;
-  background-color: $prmery_1;
-  padding: 0 40px;
-  flex: 1;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: $secondery_2;
-
-  div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .text-container {
-    display: flex;
-    flex-direction: column;
-  }
-}
-
 .game-play {
   //background-color: aquamarine;
   background-color: $prmery_1;

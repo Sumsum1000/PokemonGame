@@ -21,6 +21,7 @@ import { Die } from "./Die";
 import { Dice } from "./Dice";
 import { Victory } from "./Victory";
 import { PlayersForm } from "./PlayersForm";
+import { TopBoard } from "./TopBoard";
 
 export const Game = () => {
   const dispatch = useDispatch();
@@ -160,14 +161,8 @@ export const Game = () => {
     <div className={style["game-container"]}>
       {isFormVisible && <PlayersForm formHide={formHandler} start={btnStart} />}
 
-      <div className={style["game-text"]}>
-        <div>
-          <PlayerInfo p="1" name={player1.name} />
-        </div>
-        <div>
-          <PlayerInfo p="2" name={player2.name} />
-        </div>
-      </div>
+      <TopBoard />
+
       <div className={style["game-play"]}>
         {/* P1 */}
         {player2.deckCounter === 0 ? (

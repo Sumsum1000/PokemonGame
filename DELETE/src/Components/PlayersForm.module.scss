@@ -1,0 +1,62 @@
+$prmery_2: rgb(255, 204, 3);
+
+form {
+  position: absolute;
+  z-index: 20;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 11.2%;
+  width: 300px;
+  height: 320px;
+  padding: 40px 160px;
+  background-color: rgb(89, 89, 89);
+  border: 1px solid rgb(158, 210, 234);
+  border-radius: 10px;
+  color: $prmery_2;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  input {
+    background: none;
+    color: white;
+    border: none;
+    border-bottom: 1px solid rgb(231, 200, 22);
+
+    &:focus {
+      border: none;
+      outline: none;
+      border-bottom: 1px solid rgb(255, 255, 255);
+    }
+  }
+
+  h2 {
+    margin-bottom: auto;
+    text-align: center;
+    font-size: 32px;
+  }
+
+  h5 {
+    margin: 0;
+  }
+
+  .player {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  .btns {
+    display: flex;
+    gap: 20px;
+
+    button {
+      color: rgb(231, 200, 22);
+      background-color: transparent;
+      border: 1px solid rgb(231, 200, 22);
+      padding: 10px 0;
+      flex: 1;
+    }
+  }
+}
