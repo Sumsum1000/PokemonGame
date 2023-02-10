@@ -22,7 +22,6 @@ export const Card = ({
   const [canClick, setCanClick] = useState(true);
 
   const cardClickHandler = () => {
-    console.log("click click click");
     setIsClicked(true);
     setCanClick(false);
   };

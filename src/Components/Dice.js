@@ -33,6 +33,10 @@ export const Dice = ({ className, className2, className3 }) => {
   const player1 = useSelector((state) => state.player1);
   const player2 = useSelector((state) => state.player2);
   const gameLogic = useSelector((state) => state.gameLogic);
+  const [resultsL, setResultsL] = useState("-");
+  const [resultsR, setResultsR] = useState("-");
+  const [resultsLVisible, setIsResultsLVisible] = useState(true);
+  const [resultsRVisible, setIsResultsRVisible] = useState(true);
   const {
     numAttackDice,
     numDeffenceDice,
@@ -41,37 +45,20 @@ export const Dice = ({ className, className2, className3 }) => {
     isModal,
     isPlayerTurn,
   } = gameLogic;
-
-  // Add icons for attack and deffence - who is play, attack or deffence
-  // Duplicate code for attack and deffence
-  //console.log("conter ", roundCounter);
+  const DELAY = 600;
 
   useEffect(() => {
-    //console.log("Attack ", numAttackDice);
     let timer;
     if (numAttackDice === 3 && attackResults.length > 2) {
-      //console.log("numAttackDice ", numAttackDice);
-
       // set player playing for update attack/defence icons
 
       setRoundCounter(roundCounter + 1);
-
-      // if (roundCounter === 1) {
-      //   // p2 defence
-      //   console.log("p2 defence");
-      // }
-      // if (roundCounter === 2) {
-      //   // p1 defence
-      //   console.log("p1 defence");
-      //   setRoundCounter(0);
-      // }
 
       timer = setTimeout(() => {
         setIsAttackGrayed(!isAttackGrayed);
         setIsDeffenceGrayed(!isDeffenceGrayed);
 
         const result = attackResults[0] * attackResults[1] * attackResults[2];
-        //console.log("attackResults! ", attackResults);
         setAttackMultiply(result);
         setIsAttackCalc(true);
         dispatch(gameLogicActions.resetAttackResult());
@@ -79,7 +66,7 @@ export const Dice = ({ className, className2, className3 }) => {
         // p2 attack
         dispatch(player2Actions.setIsPlaying(!player2.isPlaying));
         // p1 defence
-      }, 600);
+      }, DELAY);
     }
 
     return () => {
@@ -88,39 +75,25 @@ export const Dice = ({ className, className2, className3 }) => {
   }, [numAttackDice, attackResults]);
 
   useEffect(() => {
-    //console.log("Attack ", numDeffenceDice);
     let timer;
     if (numDeffenceDice === 2 && deffenceResults.length > 1) {
-      //console.log("numDeffenceDice ", numDeffenceDice);
-
       // set player playing for update attack/defence icons
       setRoundCounter(roundCounter + 1);
-
-      // if (roundCounter === 1) {
-      //   // p2 attack
-      //   console.log("p2 attack");
-      // }
-      // if (roundCounter === 2) {
-      //   // p1 attack
-      //   console.log("p1 attack");
-      // }
 
       timer = setTimeout(() => {
         setIsAttackGrayed(!isAttackGrayed);
         setIsDeffenceGrayed(!isDeffenceGrayed);
 
         const result = deffenceResults[0] * deffenceResults[1];
+
         //console.log("attackResults! ", attackResults);
 
         // after a complete round-----------------------
         setDeffenceMultiply(result);
         setIsDefeenceCalc(true);
-        //console.log("attackMultiply ", attackMultiply);
-        //console.log("deffenceMultiply ", deffenceMultiply);
-        //calculateHp(attackMultiply - deffenceMultiply);
         dispatch(gameLogicActions.resetDeffenceResult());
         dispatch(gameLogicActions.reactivateDice());
-      }, 600);
+      }, DELAY);
     }
 
     return () => {
@@ -129,69 +102,137 @@ export const Dice = ({ className, className2, className3 }) => {
   }, [numDeffenceDice, deffenceResults]);
 
   useEffect(() => {
-    if (roundCounter === 1) {
-      console.log("roundCounter: ", roundCounter);
-      console.log("p1 attack");
-      dispatch(player1Actions.setIsAttack(true));
-      dispatch(player1Actions.setIsDefence(false));
-      dispatch(player2Actions.setIsAttack(false));
-      dispatch(player2Actions.setIsDefence(false));
-    }
-    if (roundCounter === 2) {
-      console.log("p2 defence");
-      console.log("roundCounter: ", roundCounter);
-      dispatch(player1Actions.setIsAttack(false));
-      dispatch(player1Actions.setIsDefence(false));
-      dispatch(player2Actions.setIsAttack(false));
-      dispatch(player2Actions.setIsDefence(true));
-    }
-    if (roundCounter === 3) {
-      console.log("p2 attack");
-      console.log("roundCounter: ", roundCounter);
-      dispatch(player1Actions.setIsAttack(false));
-      dispatch(player1Actions.setIsDefence(false));
-      dispatch(player2Actions.setIsAttack(true));
-      dispatch(player2Actions.setIsDefence(false));
-    }
-    if (roundCounter === 4) {
-      console.log("p1 defence");
-      console.log("roundCounter: ", roundCounter);
-      dispatch(player1Actions.setIsAttack(false));
-      dispatch(player1Actions.setIsDefence(true));
-      dispatch(player2Actions.setIsAttack(false));
-      dispatch(player2Actions.setIsDefence(false));
-    }
+    console.log("R ", resultsR);
+    console.log("L ", resultsL);
+    const timerL = setTimeout(() => {
+      setResultsL("-");
+      //setIsResultsLVisible(false);
+    }, 1000);
+
+    const timerR = setTimeout(() => {
+      setResultsR("-");
+      //setIsResultsRVisible(false);
+    }, 1000);
+
+    return () => {
+      clearTimeout(timerL);
+      clearTimeout(timerR);
+    };
+  }, [resultsL, resultsR]);
+
+  // Status of every player, attack/defence
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (roundCounter === 1) {
+        console.log("p1 attack");
+        dispatch(player1Actions.setIsAttack(true));
+        dispatch(player1Actions.setIsDefence(false));
+        dispatch(player2Actions.setIsAttack(false));
+        dispatch(player2Actions.setIsDefence(false));
+        showResultsL(7);
+      }
+      if (roundCounter === 2) {
+        console.log("p2 defence");
+        dispatch(player1Actions.setIsAttack(false));
+        dispatch(player1Actions.setIsDefence(false));
+        dispatch(player2Actions.setIsAttack(false));
+        dispatch(player2Actions.setIsDefence(true));
+      }
+      if (roundCounter === 3) {
+        console.log("p2 attack");
+        dispatch(player1Actions.setIsAttack(false));
+        dispatch(player1Actions.setIsDefence(false));
+        dispatch(player2Actions.setIsAttack(true));
+        dispatch(player2Actions.setIsDefence(false));
+        showResultsR(2);
+      }
+      if (roundCounter === 4) {
+        console.log("p1 defence");
+        dispatch(player1Actions.setIsAttack(false));
+        dispatch(player1Actions.setIsDefence(true));
+        dispatch(player2Actions.setIsAttack(false));
+        dispatch(player2Actions.setIsDefence(false));
+      }
+    }, 600);
     if (roundCounter === 5) {
       console.log("reset");
-      console.log("roundCounter: ", roundCounter);
       setRoundCounter(1);
     }
+
+    return () => {
+      clearTimeout(timer);
+    };
   }, [roundCounter]);
+
+  const showResultsL = (number) => {
+    setIsResultsLVisible(true);
+    // if (number > 0) {
+    //   setResultsL(number);
+    // }
+    // if (number < 0) {
+    //   setResultsL(number);
+    // }
+    // if (number === 0) {
+    //   setResultsL(0);
+    // }
+  };
+
+  const showResultsR = (number) => {
+    setIsResultsRVisible(true);
+    // if (number > 0) {
+    //   setResultsR(number);
+    // }
+    // if (number < 0) {
+    //   setResultsR(number);
+    // }
+    // if (number === 0) {
+    //   setResultsR(0);
+    // }
+  };
 
   useEffect(() => {
     if (isAttackCalc && isDeffenceCalc) {
       if (player2.mode === "deffence") {
         setIsAttackCalc(false);
         setIsDefeenceCalc(false);
-        const newHp = player2.bigCardHp - (attackMultiply - deffenceMultiply);
+        const substructAmount = attackMultiply - deffenceMultiply;
+        setResultsR(substructAmount);
+        const newHp = player2.bigCardHp - substructAmount;
+        // showResultsR(substructAmount);
+        setIsResultsRVisible(true);
         dispatch(player2Actions.setBigCardHp(newHp));
-        //console.log("newHp ", newHp);
         dispatch(player2Actions.setAttackMode());
         dispatch(player1Actions.setDeffenceMode());
       }
       if (player1.mode === "deffence" && player1.bigCardHp >= 0) {
         setIsAttackCalc(false);
         setIsDefeenceCalc(false);
-        const newHp = player1.bigCardHp - (attackMultiply - deffenceMultiply);
+        const substructAmount = attackMultiply - deffenceMultiply;
+        setResultsL(substructAmount);
+        const newHp = player1.bigCardHp - substructAmount;
+        // showResultsL(substructAmount);
+        setIsResultsLVisible(true);
         dispatch(player1Actions.setBigCardHp(newHp));
-        //console.log("newHp ", newHp);
         dispatch(player1Actions.setAttackMode());
         dispatch(player2Actions.setDeffenceMode());
       }
     }
   }, [isAttackCalc, isDeffenceCalc]);
 
+  // to do -- FIX RESULTS ui
+
+  // useEffect(() => {
+  //   if (roundCounter === 4) {
+  //     showResultsL(2);
+  //   }
+  //   if (roundCounter === 3) {
+  //     showResultsR(7);
+  //   }
+  // }, [roundCounter, isAttackCalc, isDeffenceCalc]);
+
+  // Move to game component
   useEffect(() => {
+    // Modal is active if no bigCards, and if decks not empty
     if (!player1.isBigCard || !player2.isBigCard) {
       if (player1.deckCounter > 0 && player2.deckCounter > 0) {
         dispatch(gameLogicActions.setIsModal(true));
@@ -264,6 +305,10 @@ export const Dice = ({ className, className2, className3 }) => {
             add={() => dispatch(gameLogicActions.setDeffenceDice())}
             tag="deffence"
           />
+        </div>
+        <div className={style["results"]}>
+          {resultsLVisible && <span>{resultsL}</span>}
+          {resultsRVisible && <span>{resultsR}</span>}
         </div>
       </div>
     </div>

@@ -13,7 +13,7 @@ function App() {
         <Route path={"/"} element={<SharedComponent />}>
           <Route index element={<GameMenu />} />
           <Route path={"/game"} element={<Game />} />
-          <Route path={"/form"} element={<PlayersForm />} />
+          {/* <Route path={"/form"} element={<PlayersForm />} /> */}
           <Route path={"/"} element={<GameMenu />} />
         </Route>
       </Routes>

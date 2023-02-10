@@ -12,8 +12,7 @@ import {
   player,
 } from "../_Store/Store";
 
-export const PlayersForm = () => {
-  const test = useSelector((state) => state.playersDecks);
+export const PlayersForm = ({ formHide, start }) => {
   const dispatch = useDispatch();
 
   const [deck, setDeck] = useState([]);
@@ -31,7 +30,8 @@ export const PlayersForm = () => {
     const p2 = p2Ref.current.value;
     dispatch(player1Actions.setName(p1));
     dispatch(player2Actions.setName(p2));
-    navigate("/game");
+    fetchDeck();
+    formHide();
   };
 
   const backHandler = () => {
@@ -45,7 +45,7 @@ export const PlayersForm = () => {
   const fetchDeck = async () => {
     try {
       const pokemons = await fetch(
-        "https://pokeapi.co/api/v2/pokemon?limit=25&offset=0"
+        "https://pokeapi.co/api/v2/pokemon?limit=50&offset=0"
       );
       const data = pokemons.json().then((data) => setDeck(data.results));
     } catch (error) {
@@ -71,6 +71,10 @@ export const PlayersForm = () => {
     const pokemonData = { id, name, experience: base_experience, url };
     return pokemonData;
   };
+
+  useEffect(() => {
+    console.log("Deck ", deck);
+  }, [deck]);
 
   useEffect(() => {
     fetchDeck();
@@ -101,27 +105,22 @@ export const PlayersForm = () => {
     );
   }, [deck]);
 
-  useEffect(() => {
-    console.log("new decks ", test);
-  }, [test]);
-
   return (
-    <div className={style["form-container"]}>
-      <form ref={subRef} onSubmit={onSubmit}>
-        <h2>WHO IS PLAYING?</h2>
-        <div className={style["player"]}>
-          <h5>Player 1:</h5>
-          <input ref={p1Ref} type="text" maxLength={12} />
-        </div>
-        <div className={style["player"]}>
-          <h5>Player 2:</h5>
-          <input ref={p2Ref} type="text" maxLength={12} />
-        </div>
-        <div className={style["btns"]}>
-          <input type="submit" value="Start" />
-          <button onClick={backHandler}>Back</button>
-        </div>
-      </form>
-    </div>
+    <form ref={subRef} onSubmit={onSubmit}>
+      <h2>WHO IS PLAYING?</h2>
+      <div className={style["player"]}>
+        <h5>Player 1:</h5>
+        <input placeholder="Player 1" ref={p1Ref} type="text" maxLength={12} />
+      </div>
+      <div className={style["player"]}>
+        <h5>Player 2:</h5>
+        <input placeholder="Player 2" ref={p2Ref} type="text" maxLength={12} />
+      </div>
+      <div className={style["btns"]}>
+        {/* <input type="submit" value="Start" /> */}
+        <button type="submit">{start}</button>
+        <button onClick={backHandler}>Back</button>
+      </div>
+    </form>
   );
 };

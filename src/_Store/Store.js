@@ -110,6 +110,9 @@ const player1Slice = createSlice({
     substructDeckCounter(state) {
       state.deckCounter = state.deckCounter - 1;
     },
+    resetDeckCounter(state) {
+      state.deckCounter = 5;
+    },
     setAttackMode(state) {
       state.mode = "attack";
     },
@@ -156,6 +159,9 @@ const player2Slice = createSlice({
     },
     substructDeckCounter(state) {
       state.deckCounter = state.deckCounter - 1;
+    },
+    resetDeckCounter(state) {
+      state.deckCounter = 5;
     },
     setAttackMode(state) {
       state.mode = "attack";
