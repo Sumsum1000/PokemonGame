@@ -189,35 +189,35 @@ body {
   }
 }
 
-.game-cards {
-  //background-color: tomato;
-  background-color: $prmery_1;
-  padding: 0 40px;
-  flex: 2;
+// .game-cards {
+//   //background-color: tomato;
+//   background-color: $prmery_1;
+//   padding: 0 40px;
+//   flex: 2;
 
-  display: flex;
+//   display: flex;
 
-  .deck-container-l {
-    //background-color: aliceblue;
-    background-color: $prmery_1;
-    flex: 1;
+//   .deck-container-l {
+//     //background-color: aliceblue;
+//     background-color: $prmery_1;
+//     flex: 1;
 
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 10px;
-    border-top: 1px solid $secondery_1;
-  }
+//     display: flex;
+//     align-items: center;
+//     justify-content: flex-start;
+//     gap: 10px;
+//     border-top: 1px solid $secondery_1;
+//   }
 
-  .deck-container-r {
-    //background-color: rgb(126, 142, 156);
-    background-color: $prmery_1;
-    flex: 1;
+//   .deck-container-r {
+//     //background-color: rgb(126, 142, 156);
+//     background-color: $prmery_1;
+//     flex: 1;
 
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 10px;
-    border-top: 1px solid $secondery_1;
-  }
-}
+//     display: flex;
+//     align-items: center;
+//     justify-content: flex-end;
+//     gap: 10px;
+//     border-top: 1px solid $secondery_1;
+//   }
+// }

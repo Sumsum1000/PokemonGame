@@ -22,34 +22,38 @@ import { Dice } from "./Dice";
 import { Victory } from "./Victory";
 import { PlayersForm } from "./PlayersForm";
 import { TopBoard } from "./TopBoard";
+import { BottomBoard } from "./BottomBoard";
 
 export const Game = () => {
   const dispatch = useDispatch();
-  const deck1 = useSelector((state) => state.playersDecks.deck1);
-  const deck2 = useSelector((state) => state.playersDecks.deck2);
+  // const deck1 = useSelector((state) => state.playersDecks.deck1);
+  // const deck2 = useSelector((state) => state.playersDecks.deck2);
   const { bigCard1, bigCard2 } = useSelector((state) => state.playersDecks);
 
   const player1 = useSelector((state) => state.player1);
   const player2 = useSelector((state) => state.player2);
+  const { terminatedL, terminatedR } = useSelector((state) => state.gameLogic);
 
   const [isSubstractL, setIsSubstarctL] = useState(false);
   const [isSubstractR, setIsSubstarctR] = useState(false);
   const [isFormVisible, setIsFormVisible] = useState(true);
   const [btnStart, setBtnStart] = useState("Start");
-  const [terminatedL, setTerminatedL] = useState("");
-  const [terminatedR, setTerminatedR] = useState("");
+  // const [terminatedL, setTerminatedL] = useState("");
+  // const [terminatedR, setTerminatedR] = useState("");
 
-  const hideModal = () => {
-    if (player1.isBigCard && player1.isBigCard) {
-      dispatch(gameLogicActions.setIsModal(false));
-    }
-  };
+  // const hideModal = () => {
+  //   if (player1.isBigCard && player1.isBigCard) {
+  //     dispatch(gameLogicActions.setIsModal(false));
+  //   }
+  // };
 
   //To Do - set as initial game
   const formHandler = () => {
     setIsFormVisible(false);
-    setTerminatedL("");
-    setTerminatedR("");
+    dispatch(gameLogicActions.setTerminatedL(""));
+    dispatch(gameLogicActions.setTerminatedR(""));
+    // setTerminatedL("");
+    // setTerminatedR("");
 
     dispatch(player1Actions.setBigCardHp("-"));
     dispatch(
@@ -81,49 +85,51 @@ export const Game = () => {
   }, []);
 
   // Set rigth and left big card with 1 method(not 2) accordint tag or somthing...
-  const leftCardHandler = (e) => {
-    hideModal();
+  // const leftCardHandler = (e) => {
+  //   hideModal();
 
-    if (player1.bigCardHp <= 0 || player1.bigCardHp === "-") {
-      e.cardClickHandler();
-      setTerminatedL("");
-      dispatch(player1Actions.setBigCardHp(e.experience));
-      dispatch(
-        decksActions.setBigCard1({
-          name: e.name,
-          url: e.url,
-        })
-      );
-    }
-  };
+  //   if (player1.bigCardHp <= 0 || player1.bigCardHp === "-") {
+  //     e.cardClickHandler();
+  //     setTerminatedL("");
+  //     dispatch(player1Actions.setBigCardHp(e.experience));
+  //     dispatch(
+  //       decksActions.setBigCard1({
+  //         name: e.name,
+  //         url: e.url,
+  //       })
+  //     );
+  //   }
+  // };
 
-  const rightCardHandler = (e) => {
-    hideModal();
+  // const rightCardHandler = (e) => {
+  //   hideModal();
 
-    if (player2.bigCardHp <= 0 || player2.bigCardHp === "-") {
-      e.cardClickHandler();
-      setTerminatedR("");
-      dispatch(player2Actions.setBigCardHp(e.experience));
-      dispatch(
-        decksActions.setBigCard2({
-          name: e.name,
-          url: e.url,
-        })
-      );
-    }
-  };
+  //   if (player2.bigCardHp <= 0 || player2.bigCardHp === "-") {
+  //     e.cardClickHandler();
+  //     setTerminatedR("");
+  //     dispatch(player2Actions.setBigCardHp(e.experience));
+  //     dispatch(
+  //       decksActions.setBigCard2({
+  //         name: e.name,
+  //         url: e.url,
+  //       })
+  //     );
+  //   }
+  // };
 
   useEffect(() => {
     if (player1.bigCardHp <= 0) {
       dispatch(player1Actions.setBigCardHp(0));
-      setTerminatedL(big["terminated"]);
+      //setTerminatedL(big["terminated"]);
+      dispatch(gameLogicActions.setTerminatedL("terminated"));
       setIsSubstarctL(true);
       console.log("p1 counter -1");
       dispatch(player1Actions.setIsBIgCard(false));
     }
     if (player2.bigCardHp <= 0) {
       dispatch(player2Actions.setBigCardHp(0));
-      setTerminatedR(big["terminated"]);
+      //setTerminatedR(big["terminated"]);
+      dispatch(gameLogicActions.setTerminatedR("terminated"));
       setIsSubstarctR(true);
       console.log("p2 counter -1");
       dispatch(player2Actions.setIsBIgCard(false));
@@ -205,7 +211,8 @@ export const Game = () => {
           />
         )}
       </div>
-      <div className={style["game-cards"]}>
+      <BottomBoard />
+      {/* <div className={style["game-cards"]}>
         <div className={style["deck-container-l"]}>
           {deck1.length !== 0 ? (
             deck1.map((card) => {
@@ -245,7 +252,7 @@ export const Game = () => {
             <h3>Loading...</h3>
           )}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

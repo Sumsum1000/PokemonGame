@@ -20,6 +20,8 @@ const gameLogicSlice = createSlice({
     attackResults: [],
     deffenceResults: [],
     isModal: false,
+    terminatedL: "",
+    terminatedR: "",
   },
   reducers: {
     setIsGameRunning(state, action) {
@@ -75,6 +77,12 @@ const gameLogicSlice = createSlice({
     },
     setPlayerTurn(state) {
       state.isPlayerTurn = !state.isPlayerTurn;
+    },
+    setTerminatedL(state, action) {
+      state.terminatedL = action.payload;
+    },
+    setTerminatedR(state, action) {
+      state.terminatedR = action.payload;
     },
   },
 });
