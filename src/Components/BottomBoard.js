@@ -1,7 +1,7 @@
 import style from "./BottomBoard.module.scss";
 import backStyle from "./Card.module.scss";
 import { Card } from "./Card";
-import { useSelector, dispatch, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import {
   player1Actions,
   player2Actions,
@@ -27,8 +27,7 @@ export const BottomBoard = () => {
 
     if (player1.bigCardHp <= 0 || player1.bigCardHp === "-") {
       e.cardClickHandler();
-      //setTerminatedL("");
-      dispatch(gameLogicActions.setTerminatedL(""));
+      dispatch(gameLogicActions.setTerminatedL("terminated"));
       dispatch(player1Actions.setBigCardHp(e.experience));
       dispatch(
         decksActions.setBigCard1({
@@ -44,8 +43,7 @@ export const BottomBoard = () => {
 
     if (player2.bigCardHp <= 0 || player2.bigCardHp === "-") {
       e.cardClickHandler();
-      //setTerminatedR("");
-      dispatch(gameLogicActions.setTerminatedR(""));
+      dispatch(gameLogicActions.setTerminatedR("terminated"));
       dispatch(player2Actions.setBigCardHp(e.experience));
       dispatch(
         decksActions.setBigCard2({
@@ -67,7 +65,6 @@ export const BottomBoard = () => {
                 onClick={(e) => leftCardHandler(e)}
                 isClicked={false}
                 className={backStyle["left-cards"]}
-                // className2={isClicked ? backStyle["opacity"] : ""}
                 name={card.name}
                 id={card.id}
                 experience={parseInt(card.experience)}

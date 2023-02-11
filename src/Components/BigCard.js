@@ -1,5 +1,4 @@
 import style from "./BigCard.module.scss";
-import voctory from "../Images/Victory.png";
 import sword from "../Images/Icons/Sword.png";
 import shield from "../Images/Icons/Shield.png";
 

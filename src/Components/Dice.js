@@ -1,12 +1,5 @@
 import style from "./Game.module.scss";
 import dice from "./Die.module.scss";
-import { BigCard } from "./BigCard";
-import { Card } from "./Card";
-import cardsPosition from "./BigCard.module.scss";
-import backStyle from "./Card.module.scss";
-import { PlayerInfo } from "./PlayerInfo";
-import backCard from "../Images/CardBack.jpg";
-import backCard2 from "../Images/CardBack2.jpg";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -19,9 +12,11 @@ import {
 import { Die } from "./Die";
 import { Modal } from "./Modal";
 
-export const Dice = ({ className, className2, className3 }) => {
+export const Dice = ({ className2, className3 }) => {
   const dispatch = useDispatch();
-  //   const [deck, setDeck] = useState();
+  const player1 = useSelector((state) => state.player1);
+  const player2 = useSelector((state) => state.player2);
+  const gameLogic = useSelector((state) => state.gameLogic);
   const [roundCounter, setRoundCounter] = useState(1);
   const [isAttackGrayed, setIsAttackGrayed] = useState(false);
   const [isDeffenceGrayed, setIsDeffenceGrayed] = useState(true);
@@ -29,10 +24,6 @@ export const Dice = ({ className, className2, className3 }) => {
   const [deffenceMultiply, setDeffenceMultiply] = useState("?");
   const [isAttackCalc, setIsAttackCalc] = useState(false);
   const [isDeffenceCalc, setIsDefeenceCalc] = useState(false);
-  //const [isModal, setIsModal] = useState(false);
-  const player1 = useSelector((state) => state.player1);
-  const player2 = useSelector((state) => state.player2);
-  const gameLogic = useSelector((state) => state.gameLogic);
   const [resultsL, setResultsL] = useState("-");
   const [resultsR, setResultsR] = useState("-");
   const [resultsLVisible, setIsResultsLVisible] = useState(true);
@@ -43,7 +34,6 @@ export const Dice = ({ className, className2, className3 }) => {
     attackResults,
     deffenceResults,
     isModal,
-    isPlayerTurn,
   } = gameLogic;
   const DELAY = 600;
 
@@ -86,8 +76,6 @@ export const Dice = ({ className, className2, className3 }) => {
 
         const result = deffenceResults[0] * deffenceResults[1];
 
-        //console.log("attackResults! ", attackResults);
-
         // after a complete round-----------------------
         setDeffenceMultiply(result);
         setIsDefeenceCalc(true);
@@ -101,18 +89,17 @@ export const Dice = ({ className, className2, className3 }) => {
     };
   }, [numDeffenceDice, deffenceResults]);
 
+  // Reset results to '.'
   useEffect(() => {
-    console.log("R ", resultsR);
-    console.log("L ", resultsL);
     const timerL = setTimeout(() => {
-      setResultsL("-");
-      //setIsResultsLVisible(false);
-    }, 1000);
+      setResultsL(".");
+      setIsResultsLVisible(false);
+    }, 2000);
 
     const timerR = setTimeout(() => {
-      setResultsR("-");
-      //setIsResultsRVisible(false);
-    }, 1000);
+      setResultsR(".");
+      setIsResultsRVisible(false);
+    }, 2000);
 
     return () => {
       clearTimeout(timerL);
@@ -129,7 +116,6 @@ export const Dice = ({ className, className2, className3 }) => {
         dispatch(player1Actions.setIsDefence(false));
         dispatch(player2Actions.setIsAttack(false));
         dispatch(player2Actions.setIsDefence(false));
-        showResultsL(7);
       }
       if (roundCounter === 2) {
         console.log("p2 defence");
@@ -144,7 +130,6 @@ export const Dice = ({ className, className2, className3 }) => {
         dispatch(player1Actions.setIsDefence(false));
         dispatch(player2Actions.setIsAttack(true));
         dispatch(player2Actions.setIsDefence(false));
-        showResultsR(2);
       }
       if (roundCounter === 4) {
         console.log("p1 defence");
@@ -164,30 +149,20 @@ export const Dice = ({ className, className2, className3 }) => {
     };
   }, [roundCounter]);
 
-  const showResultsL = (number) => {
-    setIsResultsLVisible(true);
-    // if (number > 0) {
-    //   setResultsL(number);
-    // }
-    // if (number < 0) {
-    //   setResultsL(number);
-    // }
-    // if (number === 0) {
-    //   setResultsL(0);
-    // }
-  };
+  // const showResultsL = (number) => {
+  //   setIsResultsLVisible(true);
+  // };
 
-  const showResultsR = (number) => {
-    setIsResultsRVisible(true);
-    // if (number > 0) {
-    //   setResultsR(number);
-    // }
-    // if (number < 0) {
-    //   setResultsR(number);
-    // }
-    // if (number === 0) {
-    //   setResultsR(0);
-    // }
+  // const showResultsR = (number) => {
+  //   setIsResultsRVisible(true);
+  // };
+
+  const setPositiveNegative = (num) => {
+    if (num < 0) {
+      return "+";
+    } else {
+      return "";
+    }
   };
 
   useEffect(() => {
@@ -196,9 +171,10 @@ export const Dice = ({ className, className2, className3 }) => {
         setIsAttackCalc(false);
         setIsDefeenceCalc(false);
         const substructAmount = attackMultiply - deffenceMultiply;
-        setResultsR(substructAmount);
+        const sign = setPositiveNegative(substructAmount);
+        setResultsR(`${sign}${substructAmount * -1}`);
         const newHp = player2.bigCardHp - substructAmount;
-        // showResultsR(substructAmount);
+        setIsResultsRVisible(false);
         setIsResultsRVisible(true);
         dispatch(player2Actions.setBigCardHp(newHp));
         dispatch(player2Actions.setAttackMode());
@@ -208,9 +184,10 @@ export const Dice = ({ className, className2, className3 }) => {
         setIsAttackCalc(false);
         setIsDefeenceCalc(false);
         const substructAmount = attackMultiply - deffenceMultiply;
-        setResultsL(substructAmount);
+        const sign = setPositiveNegative(substructAmount);
+        setResultsL(`${sign}${substructAmount * -1}`);
         const newHp = player1.bigCardHp - substructAmount;
-        // showResultsL(substructAmount);
+        setIsResultsLVisible(false);
         setIsResultsLVisible(true);
         dispatch(player1Actions.setBigCardHp(newHp));
         dispatch(player1Actions.setAttackMode());
@@ -218,17 +195,6 @@ export const Dice = ({ className, className2, className3 }) => {
       }
     }
   }, [isAttackCalc, isDeffenceCalc]);
-
-  // to do -- FIX RESULTS ui
-
-  // useEffect(() => {
-  //   if (roundCounter === 4) {
-  //     showResultsL(2);
-  //   }
-  //   if (roundCounter === 3) {
-  //     showResultsR(7);
-  //   }
-  // }, [roundCounter, isAttackCalc, isDeffenceCalc]);
 
   // Move to game component
   useEffect(() => {
@@ -308,6 +274,7 @@ export const Dice = ({ className, className2, className3 }) => {
         </div>
         <div className={style["results"]}>
           {resultsLVisible && <span>{resultsL}</span>}
+          <p></p>
           {resultsRVisible && <span>{resultsR}</span>}
         </div>
       </div>

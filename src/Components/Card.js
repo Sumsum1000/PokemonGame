@@ -1,7 +1,6 @@
 import style from "./Card.module.scss";
-import { animate, motion } from "framer-motion";
+import { animate } from "framer-motion";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 
 export const Card = ({
   src,
@@ -53,5 +52,3 @@ export const Card = ({
     </di>
   );
 };
-
-//  {`${styles.navbar} ${styles.active}`}

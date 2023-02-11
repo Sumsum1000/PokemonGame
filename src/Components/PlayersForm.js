@@ -107,7 +107,7 @@ export const PlayersForm = ({ formHide, start }) => {
 
   return (
     <form ref={subRef} onSubmit={onSubmit}>
-      <h2>WHO IS PLAYING?</h2>
+      <h2>Let's play!</h2>
       <div className={style["player"]}>
         <h5>Player 1:</h5>
         <input placeholder="Player 1" ref={p1Ref} type="text" maxLength={12} />

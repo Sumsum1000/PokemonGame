@@ -13,10 +13,10 @@ export const GameMenu = () => {
   return (
     <div className={style["menu-container"]}>
       <div className={style["menu"]}>
-        <button onClick={clickHandler}>Enter names</button>
-        <button>Sound on/off</button>
+        <button onClick={clickHandler}>Start</button>
+        {/* <button>Sound on/off</button>
         <button>Dark mode/Light mode</button>
-        <button>Quit</button>
+        <button>Quit</button> */}
       </div>
     </div>
   );
