@@ -5,11 +5,9 @@ $secondery_1: rgb(111, 139, 148);
 $secondery_2: rgb(182, 212, 222);
 
 body {
-  background-color: $prmery_2;
   background-color: $prmery_1;
   font-family: "Itim", cursive;
   letter-spacing: 1px;
-  min-width: 1280px;
 }
 
 .game-container {
@@ -25,7 +23,6 @@ body {
   background-color: $prmery_1;
   padding: 0 40px;
   flex: 3;
-  //height: 60vh;
 
   display: flex;
   justify-content: space-between;
@@ -87,10 +84,8 @@ body {
       background-color: rgba(161, 153, 153, 0.7);
       border: 2px solid black;
       padding: 20px;
-      //width: 300px;
-      //height: 300px;
-      width: 18vw;
-      height: 32vh;
+      width: 300px;
+      height: 300px;
       border-radius: 8px;
       z-index: 1;
       position: relative;

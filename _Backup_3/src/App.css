@@ -1,0 +1,9 @@
+/* .root {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(145, 177, 185);
+} */
+
+html {
+  background-color: rgb(95, 95, 95);
+}
