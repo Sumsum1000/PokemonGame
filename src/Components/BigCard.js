@@ -42,7 +42,7 @@ export const BigCard = ({
         className={[`${style["img-pokemon"]}   ${className}`].join()}
         src={url}
       />
-      <p>HP: {experience}</p>
+      <p className={style["hp"]}>HP: {experience}</p>
     </div>
   );
 };

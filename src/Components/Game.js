@@ -1,7 +1,7 @@
 import style from "./Game.module.scss";
 import bigCard from "./BigCard.module.scss";
 import { BigCard } from "./BigCard";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   gameLogicActions,
@@ -17,6 +17,7 @@ import { BottomBoard } from "./BottomBoard";
 import { LifeBar } from "./Threejs/LifeBar";
 
 export const Game = () => {
+  const ref = useRef();
   const dispatch = useDispatch();
   const { bigCard1, bigCard2 } = useSelector((state) => state.playersDecks);
 
@@ -54,12 +55,25 @@ export const Game = () => {
     dispatch(player2Actions.resetDeckCounter());
   };
 
+  function openFullscreen() {
+    if (ref.current.requestFullscreen) {
+      ref.current.requestFullscreen();
+    } else if (ref.current.webkitRequestFullscreen) {
+      /* Safari */
+      ref.current.webkitRequestFullscreen();
+    } else if (ref.current.msRequestFullscreen) {
+      /* IE11 */
+      ref.current.msRequestFullscreen();
+    }
+  }
+
   // init game
   useEffect(() => {
     dispatch(player1Actions.setIsPlaying(true));
     dispatch(player2Actions.setIsPlaying(false));
     dispatch(player1Actions.setIsAttack(true));
     dispatch(player1Actions.setIsDefence(true));
+    //openFullscreen();
   }, []);
 
   useEffect(() => {
@@ -104,7 +118,7 @@ export const Game = () => {
   }, [player1.deckCounter, player2.deckCounter]);
 
   return (
-    <div className={style["game-container"]}>
+    <div className={style["game-container"]} ref={ref}>
       {isFormVisible && <PlayersForm formHide={formHandler} start={btnStart} />}
 
       <TopBoard />

@@ -4,7 +4,6 @@ import { Game } from "./Components/Game";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { SharedComponent } from "./Components/SharedComponent";
 import { GameMenu } from "./Components/GameMenu";
-import { PlayersForm } from "./Components/PlayersForm";
 
 function App() {
   return (

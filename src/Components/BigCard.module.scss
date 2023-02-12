@@ -14,7 +14,7 @@ $mobile: 900px;
 
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 
   @media only screen and(max-width: $mobile) {
@@ -43,8 +43,8 @@ $mobile: 900px;
     transform: scale(1);
 
     @media only screen and(max-width: $mobile) {
-      width: 100px;
-      height: 100px;
+      width: 80px;
+      height: 80px;
     }
   }
 
@@ -145,4 +145,11 @@ $mobile: 900px;
 
 .classMirror {
   transform: scaleX(-1);
+}
+
+@media only screen and(max-width: $mobile) {
+  .hp {
+    position: absolute;
+    bottom: 150px;
+  }
 }
