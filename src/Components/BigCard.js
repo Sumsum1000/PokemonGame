@@ -1,6 +1,7 @@
 import style from "./BigCard.module.scss";
 import sword from "../Images/Icons/Sword.png";
 import shield from "../Images/Icons/Shield.png";
+import { LifeBar } from "./Threejs/LifeBar";
 
 export const BigCard = ({
   name,
@@ -31,13 +32,16 @@ export const BigCard = ({
         ].join()}
       >
         <img
-          className={[`${style["icon"]}  ${attackActive}`].join()}
+          className={[`${style["icon"]}   ${attackActive}`].join()}
           src={sword}
         />
         <img className={defenceActive} src={shield} />
       </div>
       <h2>{name}</h2>
-      <img className={className} src={url} />
+      <img
+        className={[`${style["img-pokemon"]}   ${className}`].join()}
+        src={url}
+      />
       <p>HP: {experience}</p>
     </div>
   );

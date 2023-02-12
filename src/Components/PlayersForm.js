@@ -106,21 +106,33 @@ export const PlayersForm = ({ formHide, start }) => {
   }, [deck]);
 
   return (
-    <form ref={subRef} onSubmit={onSubmit}>
-      <h2>Let's play!</h2>
-      <div className={style["player"]}>
-        <h5>Player 1:</h5>
-        <input placeholder="Player 1" ref={p1Ref} type="text" maxLength={12} />
-      </div>
-      <div className={style["player"]}>
-        <h5>Player 2:</h5>
-        <input placeholder="Player 2" ref={p2Ref} type="text" maxLength={12} />
-      </div>
-      <div className={style["btns"]}>
-        {/* <input type="submit" value="Start" /> */}
-        <button type="submit">{start}</button>
-        <button onClick={backHandler}>Back</button>
-      </div>
-    </form>
+    <div className={style["container"]}>
+      <form ref={subRef} onSubmit={onSubmit}>
+        <h2>Let's play!</h2>
+        <div className={style["player"]}>
+          <h5>Player 1:</h5>
+          <input
+            placeholder="Player 1"
+            ref={p1Ref}
+            type="text"
+            maxLength={12}
+          />
+        </div>
+        <div className={style["player"]}>
+          <h5>Player 2:</h5>
+          <input
+            placeholder="Player 2"
+            ref={p2Ref}
+            type="text"
+            maxLength={12}
+          />
+        </div>
+        <div className={style["btns"]}>
+          {/* <input type="submit" value="Start" /> */}
+          <button type="submit">{start}</button>
+          <button onClick={backHandler}>Back</button>
+        </div>
+      </form>
+    </div>
   );
 };

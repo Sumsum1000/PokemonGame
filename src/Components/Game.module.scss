@@ -5,19 +5,22 @@ $secondery_1: rgb(111, 139, 148);
 $secondery_2: rgb(182, 212, 222);
 
 body {
-  background-color: $prmery_2;
+  //background-color: $prmery_2;
   background-color: $prmery_1;
   font-family: "Itim", cursive;
-  letter-spacing: 1px;
-  min-width: 1280px;
+  // letter-spacing: 1px;
+  // min-width: 1280px;
 }
 
 .game-container {
   position: relative;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   height: 100vh;
   padding: 0 40px;
+  //background-color: tomato;
+  border: 3px solid;
 }
 
 .game-play {
@@ -48,6 +51,7 @@ body {
     .dice-info {
       width: 530px;
       height: 80px;
+      height: 80px;
       //background-color: blueviolet;
 
       position: fixed;
@@ -59,16 +63,23 @@ body {
 
     .attack-info {
       color: $secondery_2;
-      transform: translate(-50%, 15%);
+      //transform: translate(-50%, 15%);
+      //position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
       display: flex;
-      width: 32%;
+      width: 38%;
     }
 
     .deffence-info {
       color: $secondery_2;
-      transform: translate(-50%, 120%);
+      //transform: translate(-50%, 120%);
+      //position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      margin-top: 6%;
       display: flex;
-      width: 32%;
+      width: 38%;
     }
 
     .results-info {
