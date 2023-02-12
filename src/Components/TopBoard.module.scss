@@ -11,9 +11,9 @@ $secondery_2: rgb(182, 212, 222);
   flex: 1;
 
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  gap: 70vw;
+  //gap: 70vw;
   color: $secondery_2;
   max-width: 100vw;
 

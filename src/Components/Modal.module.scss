@@ -1,10 +1,11 @@
 $prmery_2: rgb(255, 204, 3);
+$mobile: 900px;
 
 .no-card-modal {
-  width: 350px;
-  height: 350px;
-  width: 34%;
-  height: 45%;
+  //width: 350px;
+  //height: 350px;
+  width: 21%;
+  height: 38%;
   position: fixed;
   left: 50%;
   transform: translate(-50%, -7%);
@@ -14,11 +15,18 @@ $prmery_2: rgb(255, 204, 3);
   z-index: 10;
   font-size: 22px;
   background-color: rgba(61, 61, 61, 0.9);
-  margin-top: 10px;
+  margin-top: 1.1%;
   border-radius: 10px;
   color: $prmery_2;
+  @media only screen and(max-width: $mobile) {
+    width: 24%;
+    height: 44%;
+  }
 
   p {
     font-size: 30px;
+    @media only screen and(max-width: $mobile) {
+      font-size: 12px;
+    }
   }
 }

@@ -2,11 +2,11 @@ $prmery_1: rgb(53, 52, 52);
 $secondery_1: rgb(111, 139, 148);
 $secondery_2: rgb(182, 212, 222);
 
-$mobile: 900px;
-
 .big-card-container {
-  width: 280px;
-  height: 400px;
+  //width: 280px;
+  width: 19%;
+  //height: 400px;
+  height: 85%;
   background-color: rgb(207, 203, 198);
   border: 3px solid black;
   border-radius: 10px;
@@ -17,35 +17,30 @@ $mobile: 900px;
   justify-content: space-between;
   align-items: center;
 
-  @media only screen and(max-width: $mobile) {
-    width: 140px;
-    height: 200px;
-  }
+  // @media only screen and (max-width: 1100px) {
+  //   background-color: lightblue;
+
+  // }
 
   h2 {
     font-size: 28px;
-    @media only screen and(max-width: $mobile) {
-      font-size: 18px;
-    }
   }
 
   p {
     font-size: 20px;
-    @media only screen and(max-width: $mobile) {
-      font-size: 10px;
-    }
   }
 
-  img {
-    width: 200px;
-    height: 250px;
+  .img-pokemon {
+    //width: 250px;
+    position: absolute;
+    height: 26%;
+    margin-top: 4%;
+    //width: 90%;
+    //height: 40%;
     //background-color: antiquewhite;
     transform: scale(1);
 
-    @media only screen and(max-width: $mobile) {
-      width: 100px;
-      height: 100px;
-    }
+    //object-fit: fill;
   }
 
   .img-anim {
@@ -53,27 +48,12 @@ $mobile: 900px;
     animation: 1s fade-in forwards;
   }
 
-  @keyframes fade-in {
-    from {
-      transform: scale(0);
-    }
-    to {
-      transform: scale(1);
-    }
-  }
-
   .left {
-    margin-left: 140px;
-    @media only screen and(max-width: $mobile) {
-      margin-left: 100px;
-    }
+    margin-left: 10%;
   }
 
   .right {
-    margin-right: 140px;
-    @media only screen and(max-width: $mobile) {
-      margin-left: 100px;
-    }
+    margin-right: 10%;
   }
 
   .opacity {
@@ -109,17 +89,12 @@ $mobile: 900px;
   gap: 10px;
   top: 150px;
   //background-color: bisque;
-  @media only screen and(max-width: $mobile) {
-    top: 50px;
-  }
 
   img {
     max-width: 50px;
+    min-width: 30px;
     height: auto;
     opacity: 0.2;
-    @media only screen and(max-width: $mobile) {
-      width: 25px;
-    }
   }
 
   // .icon-not-active {
@@ -132,15 +107,9 @@ $mobile: 900px;
 }
 .icons-left {
   margin-left: 400px;
-  @media only screen and(max-width: $mobile) {
-    margin-left: 200px;
-  }
 }
 .icons-right {
   margin-right: 400px;
-  @media only screen and(max-width: $mobile) {
-    margin-left: 200px;
-  }
 }
 
 .classMirror {

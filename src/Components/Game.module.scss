@@ -4,9 +4,11 @@ $prmery_2: rgb(255, 204, 3);
 $secondery_1: rgb(111, 139, 148);
 $secondery_2: rgb(182, 212, 222);
 
+$mobile: 900px;
+
 body {
-  //background-color: $prmery_2;
-  background-color: $prmery_1;
+  background-color: $prmery_2;
+  //background-color: $prmery_1;
   font-family: "Itim", cursive;
   // letter-spacing: 1px;
   // min-width: 1280px;
@@ -18,7 +20,6 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  padding: 0 40px;
   //background-color: tomato;
   border: 3px solid;
 }
@@ -34,11 +35,11 @@ body {
   justify-content: space-between;
   align-items: center;
 
-  .results {
-    p {
-      color: red;
-    }
-  }
+  // .results {
+  //   p {
+  //     color: red;
+  //   }
+  // }
 
   .dice-area-container {
     // background-color: burlywood;
@@ -114,17 +115,23 @@ body {
         justify-content: space-between;
         bottom: 0;
         width: 70%;
+        height: 2px;
         left: 50%;
         transform: translateX(-50%);
         bottom: 50px;
         border-bottom: 1px solid rgb(103, 98, 98);
         //background-color: aqua;
+        //z-index: 10;
+        @media only screen and(max-width: $mobile) {
+          bottom: 10px;
+        }
 
         span {
-          font-size: 32px;
+          font-size: 40px;
           font-weight: 700;
           width: 60px;
           text-align: center;
+
           //background-color: aliceblue;
 
           // TO DO - two animations not working at the same time
@@ -143,10 +150,10 @@ body {
 
       @keyframes num-pos-in {
         from {
-          transform: translateY(0px);
+          transform: translateY(-30px);
         }
         to {
-          transform: translateY(-20px);
+          transform: translateY(-50px);
         }
       }
 
