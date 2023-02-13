@@ -1,3 +1,9 @@
+$prmery_1: rgb(53, 52, 52);
+$prmery_2: rgb(255, 204, 3);
+
+$secondery_1: rgb(111, 139, 148);
+$secondery_2: rgb(182, 212, 222);
+
 .menu-container {
   position: absolute;
   //background-color: antiquewhite;
@@ -10,5 +16,21 @@
 .menu {
   width: 10%;
   display: flex;
+  align-items: center;
   flex-direction: column;
+}
+
+.btn {
+  background: transparent;
+  border: none;
+  width: 80px;
+  font-size: 22px;
+  margin-top: 50%;
+  color: $prmery_2;
+  border-bottom: 1px solid $prmery_2;
+  text-align: center;
+
+  &:hover {
+    color: $secondery_2;
+  }
 }
