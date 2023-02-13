@@ -1,19 +1,13 @@
-$attack: rgb(30, 30, 30);
-$deffence: rgb(97, 114, 43);
-$prmery_1: rgb(53, 52, 52);
-$secondery_1: rgb(111, 139, 148);
-$secondery_2: rgb(182, 212, 222);
-$secondery_3: rgb(98, 113, 118);
+@import './Root.module.scss';
 
 .die {
-  //background: url("../Images/Dice/die_2.png") center/cover no-repeat;
   position: relative;
   width: 60px;
   height: 60px;
   width: 20%;
   height: 20%;
   border-radius: 8px;
-  background-color: rgb(23, 50, 66);
+  background-color: $secondery_3;
   color: white;
   display: flex;
   justify-content: center;
@@ -27,7 +21,7 @@ $secondery_3: rgb(98, 113, 118);
     height: 100%;
     border-radius: 5px;
     z-index: 2;
-    background-color: rgba(156, 171, 184, 0.92);
+    background-color: rgba($secondery_1, 0.92);
   }
 
   .m {

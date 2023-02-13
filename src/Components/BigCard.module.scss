@@ -1,8 +1,4 @@
-$prmery_1: rgb(53, 52, 52);
-$secondery_1: rgb(111, 139, 148);
-$secondery_2: rgb(182, 212, 222);
-
-$mobile: 900px;
+@import './Root.module.scss';
 
 .big-card-container {
   width: 280px;
