@@ -14,7 +14,6 @@ import { Victory } from "./Victory";
 import { PlayersForm } from "./PlayersForm";
 import { TopBoard } from "./TopBoard";
 import { BottomBoard } from "./BottomBoard";
-import { LifeBar } from "./Threejs/LifeBar";
 
 export const Game = () => {
   const ref = useRef();

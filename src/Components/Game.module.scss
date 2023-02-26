@@ -1,10 +1,4 @@
-$prmery_1: rgb(53, 52, 52);
-$prmery_2: rgb(255, 204, 3);
-
-$secondery_1: rgb(111, 139, 148);
-$secondery_2: rgb(182, 212, 222);
-
-$mobile: 900px;
+@import "./Root.module.scss";
 
 body {
   //background-color: $prmery_2;
@@ -27,13 +21,19 @@ body {
   background-color: $prmery_1;
   padding: 0 40px;
   flex: 3;
-  //height: 60vh;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
 
   .dice-area-container {
+    // background-color: burlywood;
+    // width: 500px;
+    // height: 300px;
+    // z-index: 2;
+    // display: flex;
+    // justify-content: center;
+
     .dice-info {
       width: 530px;
       height: 80px;
@@ -49,8 +49,6 @@ body {
 
     .attack-info {
       color: $secondery_2;
-      //transform: translate(-50%, 15%);
-      //position: absolute;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
@@ -59,8 +57,6 @@ body {
 
     .deffence-info {
       color: $secondery_2;
-      //transform: translate(-50%, 120%);
-      //position: absolute;
       left: 50%;
       transform: translateX(-50%);
       margin-top: 6%;
@@ -73,7 +69,6 @@ body {
       width: 100px;
       display: flex;
       gap: 10px;
-      //justify-content: space-around;
       align-items: center;
 
       span {
@@ -83,11 +78,9 @@ body {
     }
 
     .dice-area {
-      background-color: rgba(161, 153, 153, 0.7);
+      background-color: $prmery_1;
       border: 2px solid black;
       padding: 20px;
-      //width: 300px;
-      //height: 300px;
       width: 18vw;
       height: 32vh;
       border-radius: 8px;
@@ -104,9 +97,8 @@ body {
         left: 50%;
         transform: translateX(-50%);
         bottom: 50px;
-        border-bottom: 1px solid rgb(103, 98, 98);
+        border-bottom: 1px solid $secondery_1;
         //background-color: aqua;
-        //z-index: 10;
         @media only screen and(max-width: $mobile) {
           bottom: 10px;
         }
@@ -117,9 +109,6 @@ body {
           width: 60px;
           text-align: center;
 
-          //background-color: aliceblue;
-
-          // TO DO - two animations not working at the same time
           &:first-of-type {
             color: $prmery_2;
             animation: num-scale-in 2.5s forwards, num-pos-in 1.5s forwards,

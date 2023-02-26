@@ -1,7 +1,6 @@
 import style from "./BigCard.module.scss";
 import sword from "../Images/Icons/Sword.png";
 import shield from "../Images/Icons/Shield.png";
-import { LifeBar } from "./Threejs/LifeBar";
 
 export const BigCard = ({
   name,
