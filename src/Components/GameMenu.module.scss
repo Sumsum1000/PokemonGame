@@ -14,10 +14,38 @@ $secondery_2: rgb(182, 212, 222);
 }
 
 .menu {
-  width: 10%;
+  //width: 7%;
+  width: 120px;
+  height: 120px;
   display: flex;
   align-items: center;
-  flex-direction: column;
+  justify-content: center;
+  background-image: url("../Images/Ball2.png");
+  background-position: center;
+  background-size: 140px 140px;
+
+  margin-top: 80px;
+  padding: 10px;
+  border-radius: 50%;
+  border: 1px solid black;
+
+  transition: all 0.25s;
+  opacity: 1;
+
+  .click {
+    background-color: rgba(0, 255, 255, 0);
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    z-index: 3;
+  }
+
+  &:hover {
+    color: $secondery_2;
+
+    opacity: 0.2;
+    cursor: pointer;
+  }
 }
 
 .btn {
@@ -25,12 +53,16 @@ $secondery_2: rgb(182, 212, 222);
   border: none;
   width: 80px;
   font-size: 22px;
-  margin-top: 50%;
   color: $prmery_2;
-  border-bottom: 1px solid $prmery_2;
   text-align: center;
+}
 
-  &:hover {
-    color: $secondery_2;
-  }
+.btn-text {
+  font-size: 14px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 140px;
+  color: $prmery_2;
+  z-index: -2;
 }

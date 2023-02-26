@@ -11,20 +11,25 @@ $mobile: 900px;
   transform: translate(-50%, -7%);
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
   z-index: 10;
   font-size: 22px;
   background-color: rgba(61, 61, 61, 0.9);
   margin-top: 1.1%;
   border-radius: 10px;
   color: $prmery_2;
+
+  p {
+    margin-top: 100px;
+  }
+
   @media only screen and(max-width: $mobile) {
     width: 24%;
     height: 44%;
   }
 
   p {
-    font-size: 30px;
+    font-size: 25px;
     @media only screen and(max-width: $mobile) {
       font-size: 12px;
     }

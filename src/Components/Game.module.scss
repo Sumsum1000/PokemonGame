@@ -7,11 +7,9 @@ $secondery_2: rgb(182, 212, 222);
 $mobile: 900px;
 
 body {
-  background-color: $prmery_2;
-  //background-color: $prmery_1;
+  //background-color: $prmery_2;
+  background-color: $prmery_1;
   font-family: "Itim", cursive;
-  // letter-spacing: 1px;
-  // min-width: 1280px;
 }
 
 .game-container {
@@ -35,20 +33,7 @@ body {
   justify-content: space-between;
   align-items: center;
 
-  // .results {
-  //   p {
-  //     color: red;
-  //   }
-  // }
-
   .dice-area-container {
-    // background-color: burlywood;
-    // width: 500px;
-    // height: 300px;
-    // z-index: 2;
-    // display: flex;
-    // justify-content: center;
-
     .dice-info {
       width: 530px;
       height: 80px;

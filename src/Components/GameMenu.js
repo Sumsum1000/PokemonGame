@@ -1,5 +1,6 @@
 import style from "./GameMenu.module.scss";
 import { Link, useNavigate } from "react-router-dom";
+//import ball from "../Images/Ball2.png";
 
 export const GameMenu = () => {
   const navigate = useNavigate();
@@ -13,13 +14,17 @@ export const GameMenu = () => {
   return (
     <div className={style["menu-container"]}>
       <div className={style["menu"]}>
-        <button className={style["btn"]} onClick={clickHandler}>
-          Start
-        </button>
-        {/* <button>Sound on/off</button>
+        <div className={style["click"]} onClick={clickHandler}>
+          <button className={style["btn"]} onClick={clickHandler}></button>
+          {/* <button>Sound on/off</button>
         <button>Dark mode/Light mode</button>
         <button>Quit</button> */}
+        </div>
       </div>
+      <p className={style["btn-text"]} onClick={clickHandler}>
+        {" "}
+        Start
+      </p>
     </div>
   );
 };
