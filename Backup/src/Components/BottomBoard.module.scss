@@ -1,0 +1,40 @@
+$prmery_1: rgb(53, 52, 52);
+$prmery_2: rgb(255, 204, 3);
+
+$secondery_1: rgb(111, 139, 148);
+$secondery_2: rgb(182, 212, 222);
+
+.game-cards {
+  //background-color: tomato;
+  background-color: $prmery_1;
+  padding: 0 40px;
+  flex: 2;
+  //height: 25vh;
+
+  display: flex;
+
+  .deck-container-l {
+    //background-color: aliceblue;
+    background-color: $prmery_1;
+    //flex: 1;
+    width: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    border-top: 1px solid $secondery_1;
+  }
+
+  .deck-container-r {
+    background-color: $prmery_1;
+    //flex: 1;
+    width: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    border-top: 1px solid $secondery_1;
+  }
+}

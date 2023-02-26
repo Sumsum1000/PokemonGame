@@ -1,0 +1,155 @@
+$prmery_1: rgb(53, 52, 52);
+$secondery_1: rgb(111, 139, 148);
+$secondery_2: rgb(182, 212, 222);
+
+$mobile: 900px;
+
+.big-card-container {
+  width: 280px;
+  height: 400px;
+  background-color: rgb(207, 203, 198);
+  border: 3px solid black;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px rgb(104, 104, 104);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  @media only screen and(max-width: $mobile) {
+    width: 100px;
+    height: 150px;
+  }
+
+  h2 {
+    font-size: 28px;
+    @media only screen and(max-width: $mobile) {
+      font-size: 18px;
+    }
+  }
+
+  p {
+    font-size: 20px;
+    @media only screen and(max-width: $mobile) {
+      font-size: 10px;
+    }
+  }
+
+  img {
+    width: 200px;
+    height: 250px;
+    //background-color: antiquewhite;
+    transform: scale(1);
+
+    @media only screen and(max-width: $mobile) {
+      width: 80px;
+      height: 80px;
+    }
+  }
+
+  .img-anim {
+    transform: scale(1);
+    animation: 1s fade-in forwards;
+  }
+
+  @keyframes fade-in {
+    from {
+      transform: scale(0);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+
+  .left {
+    margin-left: 140px;
+    @media only screen and(max-width: $mobile) {
+      margin-left: 100px;
+    }
+  }
+
+  .right {
+    margin-right: 140px;
+    @media only screen and(max-width: $mobile) {
+      margin-left: 100px;
+    }
+  }
+
+  .opacity {
+    opacity: 0.3;
+  }
+}
+
+.green-border {
+  border: 3px solid $secondery_2;
+  box-shadow: 0px 0px 20px $secondery_2;
+}
+
+.terminated {
+  //background-color: rgb(230, 90, 90);
+  background: linear-gradient(
+    0deg,
+    rgba(68, 17, 11, 1) 0%,
+    rgba(204, 12, 6, 1) 100%
+  );
+
+  border: 3px solid red;
+  box-shadow: 0px 0px 20px rgb(255, 78, 78);
+}
+
+.opacity {
+  animation: reveal 1s linear;
+}
+
+.player-status {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  top: 150px;
+  //background-color: bisque;
+  @media only screen and(max-width: $mobile) {
+    top: 50px;
+  }
+
+  img {
+    max-width: 50px;
+    height: auto;
+    opacity: 0.2;
+    @media only screen and(max-width: $mobile) {
+      width: 25px;
+    }
+  }
+
+  // .icon-not-active {
+  //   opacity: 0.2;
+  // }
+
+  .icon-active {
+    opacity: 1;
+  }
+}
+.icons-left {
+  margin-left: 400px;
+  @media only screen and(max-width: $mobile) {
+    margin-left: 200px;
+  }
+}
+.icons-right {
+  margin-right: 400px;
+  @media only screen and(max-width: $mobile) {
+    margin-left: 200px;
+  }
+}
+
+.classMirror {
+  transform: scaleX(-1);
+}
+
+@media only screen and(max-width: $mobile) {
+  .hp {
+    position: absolute;
+    bottom: 20px;
+  }
+}
