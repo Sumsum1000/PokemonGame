@@ -1,0 +1,74 @@
+@import "../Root.module.scss";
+
+.empty-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid $prmery_2;
+  background: linear-gradient(rgba($secondery_2, 0.8), rgba($secondery_1, 0.7)),
+    url("../../Images/CardBack2.jpg") center/cover no-repeat;
+  border-radius: 8px;
+  width: 120px;
+  height: 165px;
+
+  @media only screen and(max-width: 900px) {
+    width: 55px;
+    height: 79px;
+  }
+}
+
+.card-container {
+  //background-color: bisque;
+  border-radius: 8px;
+  width: 120px;
+  height: 165px;
+  z-index: 1;
+  @media only screen and(max-width: 900px) {
+    width: 55px;
+    height: 79px;
+  }
+
+  .card-cutout {
+    border-radius: 15px;
+
+    img {
+      width: 100%;
+    }
+  }
+}
+
+.right-cards {
+  background: url("../../Images/CardBack.jpg") center/cover no-repeat;
+  //border: 2px solid rgb(78, 156, 199);
+  transition: all 0.2s ease;
+  &:hover {
+    transform: scale(1.05);
+    background: linear-gradient(rgba($player_2, 0.3), rgba($player_2, 0.2)),
+      url("../../Images/CardBack.jpg") center/cover no-repeat;
+  }
+}
+
+.left-cards {
+  background: url("../../Images/CardBack2.jpg") center/cover no-repeat;
+  //border: 2px solid rgb(211, 158, 136);
+  transition: all 0.2s ease;
+
+  &:hover {
+    transform: scale(1.05);
+    background: linear-gradient(rgba($player_1, 0.35), rgba($player_1, 0.25)),
+      url("../../Images/CardBack2.jpg") center/cover no-repeat;
+  }
+}
+
+.opacity {
+  animation: cardFade 1s forwards;
+}
+
+@keyframes cardFade {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

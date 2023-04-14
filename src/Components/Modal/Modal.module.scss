@@ -1,0 +1,34 @@
+@import "../Root.module.scss";
+
+.no-card-modal {
+  width: 21%;
+  height: 38%;
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, -7%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  font-size: 22px;
+  background-color: rgba($secondery_3, 0.95);
+  margin-top: 1.1%;
+  border-radius: 10px;
+  color: $prmery_2;
+
+  p {
+    margin-top: 100px;
+  }
+
+  @media only screen and(max-width: $mobile) {
+    width: 24%;
+    height: 44%;
+  }
+
+  p {
+    font-size: 25px;
+    @media only screen and(max-width: $mobile) {
+      font-size: 12px;
+    }
+  }
+}

@@ -1,8 +1,4 @@
-import {
-  configureStore,
-  createSlice,
-  isAsyncThunkAction,
-} from "@reduxjs/toolkit";
+import { configureStore, createSlice } from "@reduxjs/toolkit";
 
 const gameLogicSlice = createSlice({
   name: "gameLogic",
@@ -86,17 +82,6 @@ const gameLogicSlice = createSlice({
     },
   },
 });
-
-// const playersSlice = createSlice({
-//   name: "playersInfo",
-//   initialState: { p1: "Player A", p2: "Player B" },
-//   reducers: {
-//     setPlayersNames(state, action) {
-//       state.p1 = action.payload[0];
-//       state.p2 = action.payload[1];
-//     },
-//   },
-// });
 
 const player1Slice = createSlice({
   name: "player1",
@@ -200,7 +185,6 @@ const player2Slice = createSlice({
 
 const url = "https://pokeapi.co/api/v2/pokemon?limit=50&offset=0";
 
-// move this slice to player 1 and player 2
 const decksSlice = createSlice({
   name: "playersDecks",
   initialState: { deck1: [], deck2: [], bigCard1: {}, bigCard2: {} },
@@ -221,7 +205,6 @@ const decksSlice = createSlice({
 export const store = configureStore({
   reducer: {
     playersDecks: decksSlice.reducer,
-    //playersInfo: playersSlice.reducer,
     gameLogic: gameLogicSlice.reducer,
     player1: player1Slice.reducer,
     player2: player2Slice.reducer,
@@ -229,7 +212,6 @@ export const store = configureStore({
 });
 
 export const decksActions = decksSlice.actions;
-//export const playersInfoActions = playersSlice.actions;
 export const gameLogicActions = gameLogicSlice.actions;
 export const player1Actions = player1Slice.actions;
 export const player2Actions = player2Slice.actions;

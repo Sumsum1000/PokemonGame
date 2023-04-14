@@ -1,10 +1,8 @@
-import logo from "./logo.svg";
 import "./App.css";
-import { Game } from "./Components/Game";
+import { Game } from "./Components/Game/Game";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { SharedComponent } from "./Components/SharedComponent";
-import { GameMenu } from "./Components/GameMenu";
-import { Test } from "./Components/Test";
+import { GameMenu } from "./Components/GameMenu/GameMenu";
 
 function App() {
   return (
